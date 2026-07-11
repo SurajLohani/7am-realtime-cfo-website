@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7AM & Realtime CFO™ — Your CFO Works Two Ways</title>
+<meta name="description" content="7AM Automatic. CURRENT On-Demand. Scattered data, consolidated, verified, analyzed — delivered as One Page Financial News every morning at 7AM, or anytime you type CURRENT.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0d2438;
+    --navy-2:#132d47;
+    --navy-3:#1a3a5c;
+    --gold:#f6a623;
+    --gold-2:#e8590c;
+    --green:#3fae6a;
+    --ink:#0d2438;
+    --paper:#f7f8fa;
+    --muted:#5b6b7a;
+    --line:#24425f;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',Arial,sans-serif; color:var(--ink); background:var(--paper); line-height:1.6; overflow-x:hidden;}
+  h1,h2,h3,h4{font-family:'Poppins',Arial,sans-serif; font-weight:700;}
+  .gold{background:linear-gradient(120deg,var(--gold),var(--gold-2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  a{text-decoration:none; color:inherit;}
+  ul{list-style:none;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+  img{max-width:100%; display:block;}
+
+  /* NAV */
+  header{position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(13,36,56,0.92); backdrop-filter:blur(10px); border-bottom:1px solid rgba(255,255,255,0.06); transition:.3s;}
+  nav{display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:1180px; margin:0 auto;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Poppins'; font-weight:800; color:#fff; font-size:18px;}
+  .brand .dot{width:10px; height:10px; border-radius:50%; background:linear-gradient(120deg,var(--gold),var(--gold-2)); box-shadow:0 0 12px var(--gold);}
+  .navlinks{display:flex; gap:28px;}
+  .navlinks a{color:#c9d3dc; font-size:14px; font-weight:500; letter-spacing:.3px; transition:.2s; position:relative; padding:4px 0;}
+  .navlinks a:hover, .navlinks a.active{color:var(--gold);}
+  .navlinks a.active::after{content:''; position:absolute; bottom:-4px; left:0; right:0; height:2px; background:var(--gold);}
+  .cta-btn{background:linear-gradient(120deg,var(--gold),var(--gold-2)); color:#fff; padding:10px 20px; border-radius:30px; font-weight:600; font-size:14px; box-shadow:0 4px 18px rgba(232,89,12,0.35); transition:.25s; border:none; cursor:pointer;}
+  .cta-btn:hover{transform:translateY(-2px); box-shadow:0 8px 24px rgba(232,89,12,0.5);}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer;}
+  .burger span{width:24px; height:2px; background:#fff;}
+
+  /* HERO */
+  .hero{min-height:100vh; display:flex; align-items:center; background:radial-gradient(circle at 20% 20%, #16354f 0%, #0d2438 55%, #081627 100%); color:#fff; position:relative; padding:140px 0 80px; overflow:hidden;}
+  .hero::before{content:''; position:absolute; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(246,166,35,0.12), transparent 70%); top:-200px; right:-150px;}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center; position:relative; z-index:2;}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; background:rgba(246,166,35,0.12); border:1px solid rgba(246,166,35,0.35); color:var(--gold); padding:6px 16px; border-radius:30px; font-size:12px; font-weight:600; letter-spacing:.5px; margin-bottom:22px;}
+  .hero h1{font-size:44px; line-height:1.18; margin-bottom:20px;}
+  .hero p.lead{font-size:17px; color:#b9c6d2; max-width:520px; margin-bottom:30px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px;}
+  .btn-ghost{border:1px solid rgba(255,255,255,0.25); color:#fff; padding:12px 24px; border-radius:30px; font-weight:600; font-size:14px; transition:.25s;}
+  .btn-ghost:hover{background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.5);}
+  .btn-solid{background:linear-gradient(120deg,var(--gold),var(--gold-2)); color:#fff; padding:12px 26px; border-radius:30px; font-weight:600; font-size:14px; box-shadow:0 6px 22px rgba(232,89,12,0.4);}
+
+  .stats-strip{display:flex; gap:34px; flex-wrap:wrap; padding-top:16px; border-top:1px solid rgba(255,255,255,0.1);}
+  .stat{min-width:100px;}
+  .stat .num{font-family:'Poppins'; font-weight:800; font-size:24px; color:var(--gold);}
+  .stat .lbl{font-size:11.5px; color:#8fa3b8; margin-top:2px;}
+
+  /* One Page News mock card */
+  .news-card{background:linear-gradient(160deg,#132d47,#0d2438); border:1px solid rgba(255,255,255,0.08); border-radius:18px; padding:26px; box-shadow:0 30px 60px rgba(0,0,0,0.4); position:relative;}
+  .news-card .card-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;}
+  .news-card .card-head .badge{background:rgba(63,174,106,0.15); color:var(--green); font-size:11px; font-weight:700; padding:4px 10px; border-radius:20px; border:1px solid rgba(63,174,106,0.35);}
+  .news-card h4{font-size:13px; color:#8fa3b8; font-weight:500; letter-spacing:.5px;}
+  .news-row{display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px dashed rgba(255,255,255,0.08); font-size:13.5px;}
+  .news-row:last-child{border-bottom:none;}
+  .news-row .val{font-weight:700; font-family:'Poppins';}
+  .val.up{color:var(--green);}
+  .val.warn{color:var(--gold);}
+  .val.down{color:#e8590c;}
+  .confidence-bar{margin-top:16px; background:rgba(255,255,255,0.06); border-radius:20px; height:8px; overflow:hidden;}
+  .confidence-fill{height:100%; background:linear-gradient(90deg,var(--gold),var(--green)); border-radius:20px; width:0%; transition:width 1.6s ease;}
+  .confidence-label{font-size:11px; color:#8fa3b8; margin-top:8px; display:flex; justify-content:space-between;}
+
+  /* SECTION generic */
+  section{padding:110px 0;}
+  .section-head{text-align:center; max-width:640px; margin:0 auto 60px;}
+  .section-head .tag{color:var(--gold-2); font-weight:700; font-size:12.5px; letter-spacing:1.5px; text-transform:uppercase;}
+  .section-head h2{font-size:32px; margin:12px 0 14px; color:var(--navy);}
+  .section-head p{color:var(--muted); font-size:15.5px;}
+  .light-bg{background:#fff;}
+
+  /* Positioning dual cards */
+  .dual{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .dual-card{background:#fff; border:1px solid #e5e9ee; border-radius:18px; padding:34px; box-shadow:0 10px 30px rgba(13,36,56,0.05); transition:.3s;}
+  .dual-card:hover{transform:translateY(-6px); box-shadow:0 20px 40px rgba(13,36,56,0.1);}
+  .dual-card .icon{width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:18px; color:#fff;}
+  .dual-card.a .icon{background:linear-gradient(120deg,var(--navy-3),var(--navy));}
+  .dual-card.b .icon{background:linear-gradient(120deg,var(--gold),var(--gold-2));}
+  .dual-card h3{font-size:20px; margin-bottom:10px; color:var(--navy);}
+  .dual-card p{color:var(--muted); font-size:14.5px; margin-bottom:16px;}
+  .dual-card ul li{font-size:13.5px; color:var(--muted); padding:6px 0; padding-left:22px; position:relative;}
+  .dual-card ul li::before{content:'✓'; position:absolute; left:0; color:var(--green); font-weight:700;}
+
+  /* How it works steps */
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:22px; margin-top:20px;}
+  .step{background:var(--navy); color:#fff; border-radius:16px; padding:26px 22px; position:relative; overflow:hidden;}
+  .step .n{font-family:'Poppins'; font-weight:800; font-size:34px; color:rgba(246,166,35,0.28); position:absolute; top:10px; right:16px;}
+  .step h4{font-size:15px; margin-bottom:8px; color:var(--gold); position:relative;}
+  .step p{font-size:13px; color:#b9c6d2; position:relative;}
+
+  /* Mission */
+  .mission{background:linear-gradient(135deg,#0d2438,#132d47); color:#fff; text-align:center; padding:100px 0; position:relative;}
+  .mission blockquote{font-family:'Poppins'; font-weight:600; font-size:26px; max-width:780px; margin:0 auto 20px; line-height:1.5;}
+  .mission .sign{color:var(--gold); font-size:13px; letter-spacing:1px; text-transform:uppercase; font-weight:700;}
+
+  /* Trust counters */
+  .trust-strip{background:var(--navy-2); padding:50px 0;}
+  .trust-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:20px; text-align:center;}
+  .trust-grid .t-num{font-family:'Poppins'; font-weight:800; font-size:30px; color:var(--gold);}
+  .trust-grid .t-lbl{font-size:12px; color:#8fa3b8; margin-top:6px;}
+
+  /* Product hierarchy */
+  .hier{display:flex; flex-direction:column; gap:16px; max-width:820px; margin:0 auto;}
+  .hier-item{display:flex; gap:20px; align-items:flex-start; background:#fff; border:1px solid #e5e9ee; border-radius:14px; padding:20px 24px; position:relative;}
+  .hier-item.hero-p{border:2px solid var(--gold); box-shadow:0 12px 30px rgba(246,166,35,0.18);}
+  .hier-badge{min-width:44px; height:44px; border-radius:12px; background:var(--navy); color:var(--gold); display:flex; align-items:center; justify-content:center; font-family:'Poppins'; font-weight:800; font-size:14px;}
+  .hier-item.hero-p .hier-badge{background:linear-gradient(120deg,var(--gold),var(--gold-2)); color:#fff;}
+  .hier-item h4{font-size:16px; color:var(--navy); margin-bottom:4px;}
+  .hier-item p{font-size:13.5px; color:var(--muted);}
+  .hier-tag{position:absolute; top:-10px; right:16px; background:var(--gold); color:#fff; font-size:10px; font-weight:700; padding:3px 10px; border-radius:10px; letter-spacing:.5px;}
+
+  .layer-box{background:#fff; border:1px solid #e5e9ee; border-radius:16px; padding:30px; margin-top:50px;}
+  .layer-box h3{color:var(--navy); font-size:19px; margin-bottom:16px;}
+  .layer-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+  .layer-chip{background:var(--paper); border-radius:10px; padding:12px 14px; font-size:12.5px; color:var(--navy); font-weight:600; text-align:center; border:1px solid #e5e9ee;}
+
+  /* Case studies */
+  .cases{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .case-card{background:#fff; border-radius:16px; overflow:hidden; border:1px solid #e5e9ee; transition:.3s;}
+  .case-card:hover{transform:translateY(-6px); box-shadow:0 20px 40px rgba(13,36,56,0.1);}
+  .case-top{background:var(--navy); color:#fff; padding:22px 24px;}
+  .case-top .tag{color:var(--gold); font-size:11px; font-weight:700; letter-spacing:.5px; text-transform:uppercase;}
+  .case-top h4{font-size:17px; margin-top:8px;}
+  .case-body{padding:22px 24px;}
+  .case-body p{font-size:13.5px; color:var(--muted); margin-bottom:14px;}
+  .case-result{background:rgba(63,174,106,0.08); border-left:3px solid var(--green); padding:10px 14px; font-size:13px; color:#1f6e3d; font-weight:600; border-radius:6px;}
+
+  .country-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:40px;}
+  .country-chip{background:#fff; border:1px solid #e5e9ee; border-radius:12px; padding:16px; text-align:center;}
+  .country-chip .flag{font-size:22px; margin-bottom:6px;}
+  .country-chip .cname{font-weight:700; font-size:13px; color:var(--navy);}
+  .country-chip .cnum{font-size:11.5px; color:var(--muted); margin-top:4px;}
+
+  /* Team */
+  .team-grid{display:grid; grid-template-columns:1fr 1fr; gap:34px;}
+  .team-card{background:#fff; border:1px solid #e5e9ee; border-radius:20px; padding:34px; text-align:left;}
+  .team-avatar{width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,var(--navy-3),var(--navy)); color:var(--gold); display:flex; align-items:center; justify-content:center; font-family:'Poppins'; font-weight:800; font-size:26px; margin-bottom:18px;}
+  .team-card h3{font-size:20px; color:var(--navy);}
+  .team-card .role{color:var(--gold-2); font-weight:600; font-size:13px; margin:6px 0 14px; line-height:1.5;}
+  .team-card p.bio{font-size:13.5px; color:var(--muted); margin-bottom:14px;}
+  .team-tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .team-tag{background:var(--paper); border:1px solid #e5e9ee; padding:5px 12px; border-radius:20px; font-size:11.5px; color:var(--navy); font-weight:600;}
+
+  .testimonial-strip{margin-top:50px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .testi{background:var(--paper); border-radius:14px; padding:22px; font-size:13.5px; color:var(--navy); font-style:italic; border-left:3px solid var(--gold);}
+  .testi .who{margin-top:12px; font-style:normal; font-weight:700; font-size:12px; color:var(--muted);}
+
+  /* Resources */
+  .books-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-bottom:60px;}
+  .book-card{background:#fff; border:1px solid #e5e9ee; border-radius:14px; padding:20px; text-align:center; transition:.25s;}
+  .book-card:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(13,36,56,0.08);}
+  .book-cover{width:70px; height:96px; margin:0 auto 14px; border-radius:6px; background:linear-gradient(160deg,var(--navy-3),var(--navy)); display:flex; align-items:center; justify-content:center; color:var(--gold); font-size:26px; box-shadow:0 8px 18px rgba(13,36,56,0.25);}
+  .book-card h5{font-size:12.5px; color:var(--navy); font-weight:700; margin-bottom:6px; min-height:32px;}
+  .book-card .meta{font-size:11px; color:var(--muted);}
+
+  .gate-box{background:linear-gradient(135deg,#0d2438,#132d47); border-radius:20px; padding:44px; text-align:center; color:#fff; max-width:640px; margin:0 auto;}
+  .gate-box h3{font-size:22px; margin-bottom:10px;}
+  .gate-box p{color:#b9c6d2; font-size:14px; margin-bottom:24px;}
+  .gate-form{display:flex; gap:10px; max-width:420px; margin:0 auto;}
+  .gate-form input{flex:1; padding:13px 18px; border-radius:30px; border:none; font-size:14px; outline:none;}
+  .gate-form button{white-space:nowrap;}
+  #booksUnlocked{display:none; margin-top:26px;}
+  #booksUnlocked.show{display:block;}
+
+  .tools-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:20px;}
+  .tool-card{background:#fff; border:1px solid #e5e9ee; border-radius:16px; padding:28px; display:flex; gap:18px; align-items:flex-start;}
+  .tool-icon{width:52px; height:52px; border-radius:12px; background:rgba(246,166,35,0.12); color:var(--gold-2); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;}
+  .tool-card h4{font-size:16px; color:var(--navy); margin-bottom:6px;}
+  .tool-card p{font-size:13px; color:var(--muted); margin-bottom:14px;}
+  .tool-link{font-size:13px; font-weight:700; color:var(--gold-2); display:inline-flex; align-items:center; gap:6px;}
+
+  /* Diagnostic form (native, multi-step) */
+  .diag-wrap{background:#fff; border:1px solid #e5e9ee; border-radius:22px; padding:40px; max-width:760px; margin:0 auto; box-shadow:0 20px 50px rgba(13,36,56,0.06);}
+  .diag-progress{display:flex; align-items:center; gap:10px; margin-bottom:30px;}
+  .diag-bar{flex:1; height:6px; background:#eef1f4; border-radius:6px; overflow:hidden;}
+  .diag-bar-fill{height:100%; width:0%; background:linear-gradient(90deg,var(--gold),var(--green)); transition:width .4s;}
+  .diag-step-label{font-size:12px; color:var(--muted); font-weight:600; white-space:nowrap;}
+  .diag-step{display:none;}
+  .diag-step.active{display:block; animation:fadein .35s ease;}
+  @keyframes fadein{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+  .diag-cat{font-size:11.5px; color:var(--gold-2); font-weight:700; text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px;}
+  .diag-q{font-size:17px; color:var(--navy); font-weight:600; margin-bottom:22px; min-height:50px;}
+  .scale5{display:flex; gap:10px; justify-content:space-between;}
+  .scale5 button{flex:1; padding:14px 0; border-radius:12px; border:2px solid #e5e9ee; background:#fff; font-family:'Poppins'; font-weight:700; font-size:15px; color:var(--muted); cursor:pointer; transition:.2s;}
+  .scale5 button:hover{border-color:var(--gold);}
+  .scale5 button.picked{background:linear-gradient(120deg,var(--gold),var(--gold-2)); color:#fff; border-color:transparent;}
+  .scale-labels{display:flex; justify-content:space-between; font-size:10.5px; color:var(--muted); margin-top:8px;}
+  .diag-nav{display:flex; justify-content:space-between; margin-top:30px;}
+  .diag-nav button{padding:11px 24px; border-radius:30px; font-weight:600; font-size:13.5px; cursor:pointer; border:none;}
+  .btn-back{background:#eef1f4; color:var(--navy);}
+  .btn-next{background:linear-gradient(120deg,var(--gold),var(--gold-2)); color:#fff;}
+  .btn-next:disabled{opacity:.4; cursor:not-allowed;}
+  .field-row{margin-bottom:18px;}
+  .field-row label{font-size:13px; font-weight:600; color:var(--navy); display:block; margin-bottom:6px;}
+  .field-row input, .field-row select{width:100%; padding:12px 16px; border-radius:10px; border:1px solid #dfe4e9; font-size:14px; outline:none; font-family:'Inter';}
+  .field-row input:focus, .field-row select:focus{border-color:var(--gold);}
+
+  .result-box{text-align:center;}
+  .result-box .r-icon{font-size:44px; margin-bottom:10px;}
+  .result-box h3{font-size:22px; color:var(--navy); margin-bottom:6px;}
+  .result-box p.sub{color:var(--muted); font-size:14px; margin-bottom:26px;}
+  .pain-list{text-align:left; display:flex; flex-direction:column; gap:14px; margin-bottom:26px;}
+  .pain-item{background:var(--paper); border-left:4px solid var(--gold-2); border-radius:10px; padding:16px 18px;}
+  .pain-item .p-rank{font-size:11px; font-weight:700; color:var(--gold-2); text-transform:uppercase;}
+  .pain-item .p-title{font-size:15px; font-weight:700; color:var(--navy); margin:4px 0;}
+  .pain-item .p-score{font-size:12.5px; color:var(--muted);}
+
+  /* Contact */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:30px;}
+  .contact-card{background:var(--navy); color:#fff; border-radius:18px; padding:32px; display:flex; gap:18px; align-items:center;}
+  .contact-card .c-icon{width:54px; height:54px; border-radius:14px; background:rgba(246,166,35,0.15); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0;}
+  .contact-card h4{font-size:16px; margin-bottom:4px;}
+  .contact-card p{font-size:13px; color:#b9c6d2;}
+  .contact-card a.link{color:var(--gold); font-weight:700; font-size:13.5px; margin-top:8px; display:inline-block;}
+
+  footer{background:#081627; color:#8fa3b8; text-align:center; padding:36px 0; font-size:12.5px;}
+  footer .fmantra{color:#5b6b7a; margin-top:8px;}
+
+  .fade-up{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .fade-up.visible{opacity:1; transform:translateY(0);}
+
+  @media(max-width:920px){
+    .navlinks{display:none;}
+    .burger{display:flex;}
+    .hero-grid{grid-template-columns:1fr;}
+    .dual, .steps, .cases, .team-grid, .tools-grid, .contact-grid, .layer-grid, .books-grid, .testimonial-strip, .country-grid, .trust-grid{grid-template-columns:repeat(2,1fr);}
+    .steps{grid-template-columns:repeat(2,1fr);}
+    .hero h1{font-size:32px;}
+    .scale5{flex-wrap:wrap;}
+  }
+  @media(max-width:560px){
+    .dual, .cases, .team-grid, .tools-grid, .contact-grid, .layer-grid, .books-grid, .testimonial-strip, .country-grid, .trust-grid, .steps{grid-template-columns:1fr;}
+    .gate-form{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<header id="mainHeader">
+  <nav>
+    <div class="brand"><span class="dot"></span>7AM <span style="color:var(--gold)">&</span> Realtime CFO™</div>
+    <ul class="navlinks" id="navLinks">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#product">Product</a></li>
+      <li><a href="#cases">Case Studies</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#diagnostic">Diagnostic</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="cta-btn">DM "MORNING"</a>
+    <div class="burger" onclick="document.getElementById('navLinks').classList.toggle('mob-open')"><span></span><span></span><span></span></div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">⏰ ONE SYSTEM · TWO WAYS</div>
+      <h1>Your CFO works two ways.<br><span class="gold">7AM automatic.</span> CURRENT on your command.</h1>
+      <p class="lead">Scattered Data → Finance OS™ (Consolidated, Verified, Analyzed) → Visibility and Clarity. Delivered as One Page Financial News, every morning at 7AM — or the instant you type CURRENT.</p>
+      <div class="hero-ctas">
+        <a href="#diagnostic" class="btn-solid">Take the Free Finance Diagnostic →</a>
+        <a href="#product" class="btn-ghost">See How It Works</a>
+      </div>
+      <div class="stats-strip">
+        <div class="stat"><div class="num">₹40-50Cr</div><div class="lbl">Fraud Caught</div></div>
+        <div class="stat"><div class="num">₹200Cr+</div><div class="lbl">Variance Identified</div></div>
+        <div class="stat"><div class="num">7</div><div class="lbl">Countries Served</div></div>
+        <div class="stat"><div class="num">64</div><div class="lbl">Case Studies</div></div>
+        <div class="stat"><div class="num">7</div><div class="lbl">Books Published</div></div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="card-head">
+        <h4>ONE PAGE FINANCIAL NEWS · TODAY</h4>
+        <span class="badge">● LIVE</span>
+      </div>
+      <div class="news-row"><span>Cash Position</span><span class="val up">₹1.84 Cr</span></div>
+      <div class="news-row"><span>Cash vs Profit Gap</span><span class="val warn">Why the Gap? →</span></div>
+      <div class="news-row"><span>Top Variance Flag</span><span class="val down">Margin −2.3%</span></div>
+      <div class="news-row"><span>Inventory Ageing</span><span class="val warn">18 SKUs &gt; 90d</span></div>
+      <div class="news-row"><span>Working Capital</span><span class="val up">₹18L Released</span></div>
+      <div class="news-row"><span>Today's Decision</span><span class="val" style="color:#fff">Collections, not procurement</span></div>
+      <div class="confidence-bar"><div class="confidence-fill" id="confFill"></div></div>
+      <div class="confidence-label"><span>Data Confidence</span><span id="confPct">0%</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- POSITIONING -->
+<section class="light-bg" id="product">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="tag">Dual Positioning</div>
+      <h2>One system, two ways to get clarity</h2>
+      <p>Not an add-on. Both modes carry equal weight — pick whichever fits the moment.</p>
+    </div>
+    <div class="dual">
+      <div class="dual-card a fade-up">
+        <div class="icon">⏰</div>
+        <h3>7AM Automatic</h3>
+        <p>Every morning at 7AM, scheduled, zero manual work — one intelligent One Page News on your preferred channel.</p>
+        <ul>
+          <li>WhatsApp · Email · Slack · Telegram · Teams</li>
+          <li>No dashboard to open. No Excel to build.</li>
+          <li>Just your CFO, before your first meeting.</li>
+        </ul>
+      </div>
+      <div class="dual-card b fade-up">
+        <div class="icon">⚡</div>
+        <h3>CURRENT On-Demand</h3>
+        <p>Type CURRENT anytime — the same One Page News within 10 minutes. Emergency, meeting prep, quick check.</p>
+        <ul>
+          <li>No calls. No waiting.</li>
+          <li>Same intelligence, different timing.</li>
+          <li>Equal weightage to 7AM — not a fallback.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-head fade-up" style="margin-top:90px;">
+      <div class="tag">How It Works</div>
+      <h2>Data First. AI Second.</h2>
+      <p>Every output passes through the Rakshak's 12-Layer Code before it reaches you.</p>
+    </div>
+    <div class="steps fade-up">
+      <div class="step"><span class="n">01</span><h4>Data In</h4><p>ERP, Excel, WhatsApp, PDFs, drives, email — all sources connected, one time.</p></div>
+      <div class="step"><span class="n">02</span><h4>Rakshak Mode</h4><p>12-layer protection: testing, compliance, audit trail, cross-verification — before AI touches it.</p></div>
+      <div class="step"><span class="n">03</span><h4>AI Commentary</h4><p>Claude turns the day's data into one plain-language decision — the CFO-narrative layer.</p></div>
+      <div class="step"><span class="n">04</span><h4>Today's Decision</h4><p>Delivered at 7AM on your chosen channel. Cash. Variance. Working Capital. Done.</p></div>
+    </div>
+
+    <div class="layer-box fade-up">
+      <h3>The Last Layer Approach™</h3>
+      <p style="color:var(--muted); font-size:14px; margin-bottom:20px;">Most finance audits start at the top — P&L, trial balance, system records. The Last Layer Approach goes below — to the warehouse floor, the security guard, the delivery rider. Fraud does not live in boardrooms. It lives in the gap between what the system records and what the last layer knows.</p>
+      <div class="layer-grid">
+        <div class="layer-chip">Data Security</div>
+        <div class="layer-chip">Anomaly Detection</div>
+        <div class="layer-chip">Cross-Verification</div>
+        <div class="layer-chip">Human-in-the-Loop</div>
+      </div>
+    </div>
+
+    <div class="hier fade-up" style="margin-top:70px;">
+      <div class="hier-item">
+        <div class="hier-badge">P1</div>
+        <div><h4>Finance OS — Backend</h4><p>One-time setup. Finds what's leaking: fraud, margin bleed, trapped cash.</p></div>
+      </div>
+      <div class="hier-item hero-p">
+        <div class="hier-tag">FLAGSHIP</div>
+        <div class="hier-badge">P2</div>
+        <div><h4>7AM & Realtime CFO™ — Frontend</h4><p>Monthly retainer. Scattered Data → Finance OS™ → Visibility and Clarity, on your preferred channel.</p></div>
+      </div>
+      <div class="hier-item">
+        <div class="hier-badge">P3</div>
+        <div><h4>Full Report + Dashboard + CFO Commentary</h4><p>Weekly full picture — every number, every variance, live Power BI + CFO narrative.</p></div>
+      </div>
+      <div class="hier-item">
+        <div class="hier-badge">P4</div>
+        <div><h4>Fractional CFO</h4><p>Senior finance leadership — strategy, investors, board, lenders, fundraising.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission">
+  <div class="wrap">
+    <blockquote class="fade-up">"I turn scattered-data horror stories — the pain, the sleepless nights — into happy endings; clarity that lasts, morning after morning, so businesses live happily ever after."</blockquote>
+    <div class="sign">Suraj Kumar Lohani · 7AM & Realtime CFO™ · #WhereNumbersSpeak</div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="trust-strip" style="padding:60px 0;">
+  <div class="wrap">
+    <div class="trust-grid fade-up">
+      <div><div class="t-num" data-count="47">0</div><div class="t-lbl">₹40-50Cr Fraud Caught</div></div>
+      <div><div class="t-num" data-count="200">0</div><div class="t-lbl">₹Cr+ Variance Found</div></div>
+      <div><div class="t-num" data-count="100">0</div><div class="t-lbl">Financial Models</div></div>
+      <div><div class="t-num" data-count="64">0</div><div class="t-lbl">Case Studies</div></div>
+      <div><div class="t-num" data-count="15000">0</div><div class="t-lbl">Book Copies Sold</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="light-bg" id="cases">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="tag">Real Problems. Real Results.</div>
+      <h2>Case Studies</h2>
+      <p>All anonymized. No company names. No internal data. The numbers are real.</p>
+    </div>
+    <div class="cases fade-up">
+      <div class="case-card">
+        <div class="case-top"><div class="tag">India · Export Manufacturing</div><h4>₹12L Contract Saved</h4></div>
+        <div class="case-body">
+          <p>₹300 Crore revenue, 1,000+ employees. Leadership had approved a ₹12 lakh, 1-month external consulting contract for a comprehensive MIS system.</p>
+          <div class="case-result">Built internally in days. CFO: "Aap is company ki asli sampatti hain."</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-top"><div class="tag">India · D2C, 6 Channels</div><h4>₹28L Working Capital Freed</h4></div>
+        <div class="case-body">
+          <p>₹15-25 Crore revenue founder was about to shut his lowest-revenue channel — not knowing it had the highest margin per order.</p>
+          <div class="case-result">178-column model. MIS Day 22 → Day 5. ₹28L released.</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-top"><div class="tag">India · E-Commerce</div><h4>₹1.25Cr Fraud Recovered</h4></div>
+        <div class="case-body">
+          <p>Returns marked received in system but physically absent from warehouse — a systematic leak running unnoticed for 3 years.</p>
+          <div class="case-result">₹37L caught in one audit cycle. Full evidence trail prepared.</div>
+        </div>
+      </div>
+    </div>
+    <div class="country-grid fade-up">
+      <div class="country-chip"><div class="flag">🇦🇪</div><div class="cname">UAE</div><div class="cnum">AED 380K WC Released</div></div>
+      <div class="country-chip"><div class="flag">🇬🇧</div><div class="cname">UK</div><div class="cnum">£38K Margin Recovered</div></div>
+      <div class="country-chip"><div class="flag">🇸🇬</div><div class="cname">Singapore</div><div class="cnum">SGD 280K Intercompany</div></div>
+      <div class="country-chip"><div class="flag">🇦🇺</div><div class="cname">Australia</div><div class="cnum">AUD 134K Branch Loss Found</div></div>
+      <div class="country-chip"><div class="flag">🇸🇦</div><div class="cname">Saudi Arabia</div><div class="cnum">SAR 1.4M Crunch Averted</div></div>
+      <div class="country-chip"><div class="flag">🇳🇱</div><div class="cname">Netherlands</div><div class="cnum">EUR 460K Treasury Deployed</div></div>
+      <div class="country-chip"><div class="flag">🇮🇳</div><div class="cname">India</div><div class="cnum">Home Base · Since 2009</div></div>
+      <div class="country-chip"><div class="flag">🌍</div><div class="cname">7 Countries</div><div class="cnum">One Architecture</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="tag">Who Builds This</div>
+      <h2>Finance expertise. Engineering execution.</h2>
+      <p>Two complementary skillsets, one architecture.</p>
+    </div>
+    <div class="team-grid fade-up">
+      <div class="team-card">
+        <div class="team-avatar">SK</div>
+        <h3>Suraj Kumar Lohani</h3>
+        <div class="role">Finance Engineer · Finance OS Architect · Creator of 7AM & Realtime CFO™</div>
+        <p class="bio">22+ years across CA firms, Export Manufacturing, FMCG and product companies globally. ₹40-50 Crore fraud caught since 2009. ₹200 Crore+ variance identified. 100+ financial models across 7 countries. Author of 7 books on Finance & Excel.</p>
+        <div class="team-tags">
+          <span class="team-tag">Finance OS</span>
+          <span class="team-tag">Excel & VBA</span>
+          <span class="team-tag">Power BI</span>
+          <span class="team-tag">Fractional CFO</span>
+          <span class="team-tag">Fraud Forensics</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">SK</div>
+        <h3>Shikha Kutariyar Lohani</h3>
+        <div class="role">Partner · Excel & Power BI Developer · AI Workflow Automation</div>
+        <p class="bio">Businesses run on data. But most teams spend more time managing data than understanding it. Shikha builds the operations backbone — Excel & Power BI reporting systems layered with AI-powered automation and structured workflows that make processes independent of any single person.</p>
+        <div class="team-tags">
+          <span class="team-tag">Excel & Power BI</span>
+          <span class="team-tag">MIS & Data Analytics</span>
+          <span class="team-tag">AI Workflow Automation</span>
+          <span class="team-tag">SOP & BPMN Design</span>
+          <span class="team-tag">SQL Reporting</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-strip fade-up">
+      <div class="testi">"Aap is company ki asli sampatti hain."<div class="who">— CFO, ₹300 Crore Export Manufacturing Company</div></div>
+      <div class="testi">"Nobody I have met knows both the finance & accounts pain AND the tech expertise together."<div class="who">— Current Client, Inventory-Driven Business</div></div>
+      <div class="testi">"You are our hero." — Offered directorship at ₹48 lakh/year. Declined.<div class="who">— Finance Automation Client</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="light-bg" id="resources">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="tag">Free Resources</div>
+      <h2>7 Books. 2 Tools. Zero cost to start.</h2>
+      <p>All built on 22 years of ground-level experience — not academic theory.</p>
+    </div>
+
+    <div class="gate-box fade-up">
+      <h3>📚 Unlock all 7 books, free</h3>
+      <p>Enter your email — get instant access to the full library, sent straight to your inbox.</p>
+      <form class="gate-form" id="gateForm" onsubmit="return unlockBooks(event)">
+        <input type="email" id="gateEmail" placeholder="you@company.com" required>
+        <button type="submit" class="cta-btn">Unlock →</button>
+      </form>
+      <div id="booksUnlocked">
+        <div class="books-grid" style="margin-top:24px; margin-bottom:0;">
+          <div class="book-card" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.15);"><div class="book-cover">📗</div><h5 style="color:#fff">Excel for Finance & Accounting</h5><a href="#" class="tool-link" style="color:var(--gold)">Download PDF →</a></div>
+          <div class="book-card" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.15);"><div class="book-cover">📘</div><h5 style="color:#fff">The Business OS</h5><a href="#" class="tool-link" style="color:var(--gold)">Download PDF →</a></div>
+          <div class="book-card" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.15);"><div class="book-cover">📙</div><h5 style="color:#fff">Finance Zero to CFO — Bk 1-4</h5><a href="#" class="tool-link" style="color:var(--gold)">Download PDF →</a></div>
+          <div class="book-card" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.15);"><div class="book-cover">📕</div><h5 style="color:#fff">Zero Cost CFO — Part 1 & 2</h5><a href="#" class="tool-link" style="color:var(--gold)">Download PDF →</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head fade-up" style="margin-top:80px;">
+      <div class="tag">Free Tools</div>
+      <h2>Find your leak in 2 minutes</h2>
+    </div>
+    <div class="tools-grid fade-up">
+      <div class="tool-card">
+        <div class="tool-icon">💧</div>
+        <div>
+          <h4>Cash vs Profit Leak Finder</h4>
+          <p>Enter 4 numbers — see exactly where your cash is trapped vs your profit. Working Capital & CCC gap in 2 minutes.</p>
+          <a href="CashVsProfit_LeakFinder_toshare.html" class="tool-link">Open Free Tool →</a>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🩺</div>
+        <div>
+          <h4>Finance Clarity Diagnostic</h4>
+          <p>A 5-minute assessment to identify your top 3 financial pain points and gaps — before you talk to anyone.</p>
+          <a href="FinanceClarityDiagnostic_toshare.html" class="tool-link">Open Free Tool →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NATIVE DIAGNOSTIC FORM -->
+<section id="diagnostic">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="tag">Free Finance Leak Audit</div>
+      <h2>Enterprise Risk Quantifier</h2>
+      <p>20 questions. 5 minutes. Find out exactly where your business is bleeding time or cash.</p>
+    </div>
+
+    <div class="diag-wrap fade-up">
+      <div class="diag-progress">
+        <div class="diag-bar"><div class="diag-bar-fill" id="diagBarFill"></div></div>
+        <div class="diag-step-label" id="diagStepLabel">Step 1 of 22</div>
+      </div>
+
+      <!-- Step 0: intro fields -->
+      <div class="diag-step active" data-step="0">
+        <div class="diag-cat">Before we start</div>
+        <div class="field-row"><label>Your Email *</label><input type="email" id="dEmail" required placeholder="you@company.com"></div>
+        <div class="field-row"><label>Company Name</label><input type="text" id="dCompany" placeholder="Your company"></div>
+        <div class="field-row"><label>Annual Revenue Range</label>
+          <select id="dRevenue">
+            <option>Under $5M</option><option>$5M–$25M</option><option>$25M–$100M</option><option>$100M–$500M</option><option>$500M+</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Steps 1-20 injected by JS -->
+      <div id="diagQuestions"></div>
+
+      <!-- Result step -->
+      <div class="diag-step" data-step="21">
+        <div class="result-box">
+          <div class="r-icon">🎯</div>
+          <h3>Your Top 3 Pain Points</h3>
+          <p class="sub">Based on your answers — here's where the leaks likely are.</p>
+          <div class="pain-list" id="painResults"></div>
+          <a href="#contact" class="btn-solid">Book a Free Finance Leak Audit →</a>
+        </div>
+      </div>
+
+      <div class="diag-nav">
+        <button class="btn-back" id="diagBack" onclick="diagPrev()">← Back</button>
+        <button class="btn-next" id="diagNext" onclick="diagNext()">Continue →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="light-bg" id="contact">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="tag">Get In Touch</div>
+      <h2>Ready when you are</h2>
+      <p>No calls. No waiting. Just message.</p>
+    </div>
+    <div class="contact-grid fade-up">
+      <div class="contact-card">
+        <div class="c-icon">💬</div>
+        <div><h4>WhatsApp</h4><p>Fastest way to reach us — DM "MORNING" to start.</p><a href="https://wa.me/917011283542" class="link" target="_blank">+91-7011283542 →</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="c-icon">💼</div>
+        <div><h4>LinkedIn — Suraj</h4><p>Finance Engineer · Finance OS Architect</p><a href="https://linkedin.com/in/surajkumarlohani" class="link" target="_blank">Connect →</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="c-icon">💼</div>
+        <div><h4>LinkedIn — Shikha</h4><p>Excel & Power BI Developer · Partner</p><a href="#" class="link" target="_blank">Connect →</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="c-icon">📋</div>
+        <div><h4>Free Diagnostic</h4><p>Not sure where to start? Take the 5-min assessment.</p><a href="#diagnostic" class="link">Start Now →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Suraj Kumar Lohani &amp; Shikha Kutariyar Lohani · 7AM &amp; Realtime CFO™ · #WhereNumbersSpeak</div>
+    <div class="fmantra">ॐ नमो श्री भगवती जगदम्बिके दुर्गायै नमः</div>
+  </div>
+</footer>
+
+<script>
+/* ---------- Nav active link on scroll + header shrink ---------- */
+const sections = document.querySelectorAll('section[id]');
+const navA = document.querySelectorAll('.navlinks a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) current = sec.id;
+  });
+  navA.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+
+/* ---------- Fade-up on scroll ---------- */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.15});
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+/* ---------- Hero confidence bar animation ---------- */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('confFill').style.width = '84%';
+    let p = 0;
+    const t = setInterval(() => {
+      p++; document.getElementById('confPct').textContent = p + '%';
+      if (p >= 84) clearInterval(t);
+    }, 16);
+  }, 500);
+});
+
+/* ---------- Trust counters ---------- */
+const counters = document.querySelectorAll('.t-num');
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.done) {
+      e.target.dataset.done = '1';
+      const target = +e.target.getAttribute('data-count');
+      let cur = 0; const step = Math.max(1, target/60);
+      const iv = setInterval(() => {
+        cur += step;
+        if (cur >= target) { cur = target; clearInterval(iv); }
+        e.target.textContent = Math.floor(cur).toLocaleString();
+      }, 20);
+    }
+  });
+}, {threshold:0.4});
+counters.forEach(c => counterObs.observe(c));
+
+/* ---------- Google Sheet backend (leads) ---------- */
+const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwe6hNIr2JUrzan62xpZzp01CAyzzg6oyzyPOI2tjXMxg7Kn2HMYw6CNNP7o1bBpUld/exec';
+
+/* ---------- Books email gate ---------- */
+function unlockBooks(ev){
+  ev.preventDefault();
+  const email = document.getElementById('gateEmail').value;
+  document.getElementById('booksUnlocked').classList.add('show');
+  document.getElementById('gateForm').style.display = 'none';
+  fetch(SHEET_ENDPOINT, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {'Content-Type':'text/plain'},
+    body: JSON.stringify({ type: 'BookRequest', email: email })
+  }).catch(()=>{ /* silent fail, books already unlocked on screen */ });
+  return false;
+}
+
+/* ---------- Native Diagnostic Form ---------- */
+const DIAG_QUESTIONS = [
+  {cat:'Cash & Working Capital', q:'How consistently do you monitor your Cash Conversion Cycle?'},
+  {cat:'Cash & Working Capital', q:'Do you run revenue stress simulations regularly?'},
+  {cat:'Cash & Working Capital', q:'How well controlled is your receivable ageing?'},
+  {cat:'Cash & Working Capital', q:'Do you maintain a rolling working capital forecast?'},
+  {cat:'Cash & Working Capital', q:'Do you reconcile Operating Cash Flow vs Net Profit regularly?'},
+  {cat:'Inventory', q:'How structured is your inventory ageing tracking?'},
+  {cat:'Inventory', q:'Are reorder points & safety stock levels clearly defined?'},
+  {cat:'Inventory', q:'Do you have discipline around slow/dead stock write-downs?'},
+  {cat:'Inventory', q:'Is MOQ-based overbuying actively controlled?'},
+  {cat:'Costing', q:'Do you track fixed asset utilisation?'},
+  {cat:'Costing', q:'Is Purchase Price Variance tracked consistently?'},
+  {cat:'Costing', q:'Is the financial impact of scrap & rejection measured?'},
+  {cat:'Costing', q:'Do you know your SKU-level contribution margin?'},
+  {cat:'Costing', q:'Are freight costs and scheme costs isolated in reporting?'},
+  {cat:'Costing', q:'Do you benchmark energy cost per unit?'},
+  {cat:'Controls', q:'How disciplined is your suspense account ageing review?'},
+  {cat:'Controls', q:'How consistent is your accrual & provision discipline?'},
+  {cat:'Controls', q:'Do you perform revenue cut-off testing?'},
+  {cat:'Controls', q:'Is maker-checker segregation enforced?'},
+  {cat:'Controls', q:'How dependent are you on ERP vs manual Excel?'}
+];
+
+const answers = new Array(DIAG_QUESTIONS.length).fill(0);
+let curStep = 0;
+const TOTAL_STEPS = DIAG_QUESTIONS.length + 2; // intro + 20 + result
+
+// build question steps
+const qContainer = document.getElementById('diagQuestions');
+DIAG_QUESTIONS.forEach((item, i) => {
+  const div = document.createElement('div');
+  div.className = 'diag-step';
+  div.setAttribute('data-step', i+1);
+  div.innerHTML = `
+    <div class="diag-cat">${item.cat}</div>
+    <div class="diag-q">${item.q}</div>
+    <div class="scale5">
+      ${[1,2,3,4,5].map(v => `<button type="button" onclick="pickScore(${i},${v})" data-i="${i}" data-v="${v}">${v}</button>`).join('')}
+    </div>
+    <div class="scale-labels"><span>Not at all</span><span>Fully in place</span></div>
+  `;
+  qContainer.appendChild(div);
+});
+
+function pickScore(qi, val){
+  answers[qi] = val;
+  document.querySelectorAll(`.diag-step[data-step="${qi+1}"] .scale5 button`).forEach(b => {
+    b.classList.toggle('picked', +b.dataset.v === val);
+  });
+  updateNextBtn();
+}
+
+function showStep(n){
+  document.querySelectorAll('.diag-step').forEach(s => s.classList.remove('active'));
+  document.querySelector(`.diag-step[data-step="${n}"]`).classList.add('active');
+  document.getElementById('diagBarFill').style.width = ((n)/(TOTAL_STEPS-1)*100) + '%';
+  document.getElementById('diagStepLabel').textContent = `Step ${n+1} of ${TOTAL_STEPS}`;
+  document.getElementById('diagBack').style.visibility = n === 0 ? 'hidden' : 'visible';
+  document.getElementById('diagNext').style.display = n === TOTAL_STEPS-1 ? 'none' : 'inline-block';
+  updateNextBtn();
+  if (n === TOTAL_STEPS-1) computeResult();
+}
+
+function updateNextBtn(){
+  const btn = document.getElementById('diagNext');
+  if (curStep === 0){
+    const email = document.getElementById('dEmail').value;
+    btn.disabled = !email.includes('@');
+  } else if (curStep >= 1 && curStep <= DIAG_QUESTIONS.length){
+    btn.disabled = answers[curStep-1] === 0;
+  } else {
+    btn.disabled = false;
+  }
+}
+document.getElementById('dEmail').addEventListener('input', updateNextBtn);
+
+function diagNext(){
+  if (curStep < TOTAL_STEPS-1){ curStep++; showStep(curStep); }
+}
+function diagPrev(){
+  if (curStep > 0){ curStep--; showStep(curStep); }
+}
+
+function computeResult(){
+  // group by category, average score, lowest average = biggest pain
+  const cats = {};
+  DIAG_QUESTIONS.forEach((item, i) => {
+    if (!cats[item.cat]) cats[item.cat] = {sum:0, n:0};
+    cats[item.cat].sum += answers[i];
+    cats[item.cat].n += 1;
+  });
+  const ranked = Object.entries(cats).map(([cat, v]) => ({cat, avg: v.sum/v.n}))
+    .sort((a,b) => a.avg - b.avg).slice(0,3);
+  const box = document.getElementById('painResults');
+  box.innerHTML = ranked.map((r, idx) => `
+    <div class="pain-item">
+      <div class="p-rank">Pain Point #${idx+1}</div>
+      <div class="p-title">${r.cat}</div>
+      <div class="p-score">Average score: ${r.avg.toFixed(1)} / 5 — biggest visibility gap</div>
+    </div>
+  `).join('');
+
+  // send lead to Google Sheet backend
+  const payload = {
+    type: 'DiagnosticAudit',
+    email: document.getElementById('dEmail').value,
+    company: document.getElementById('dCompany').value,
+    revenue: document.getElementById('dRevenue').value,
+    pain1: ranked[0] ? ranked[0].cat : '',
+    pain2: ranked[1] ? ranked[1].cat : '',
+    pain3: ranked[2] ? ranked[2].cat : '',
+    answers: DIAG_QUESTIONS.reduce((o,item,i)=>{ o[item.q]=answers[i]; return o; }, {})
+  };
+  fetch(SHEET_ENDPOINT, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {'Content-Type':'text/plain'},
+    body: JSON.stringify(payload)
+  }).catch(()=>{ /* silent fail, lead already shown on screen */ });
+}
+
+showStep(0);
+</script>
+
+</body>
+</html>
