@@ -82,7 +82,7 @@ h3{font-size:1.25rem;}
   display:flex; align-items:center; justify-content:space-between; gap:20px;
 }
 .brand{display:flex; align-items:center; color:var(--white); font-weight:800; font-size:1.15rem; white-space:nowrap;}
-.brand img{height:58px; width:auto;}
+.brand img{height:58px; width:auto; background:#fff; padding:5px 10px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.18);}
 .nav-links{display:flex; align-items:center; gap:28px; list-style:none;}
 .nav-links a{color:rgba(255,255,255,.86); font-weight:600; font-size:.92rem; transition:color .2s;}
 .nav-links a:hover, .nav-links a.active{color:var(--gold);}
