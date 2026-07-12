@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enterprise Risk Quantifier — Free Financial Diagnostic | 7AM & Realtime CFO™</title>
+<meta name="description" content="20-question free financial diagnostic across Cash & Working Capital, Inventory, Costing and Controls. Get your Finance Clarity Score and Top 3 Pain Points in 5 minutes.">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a href="index.html" class="brand"><img src="assets/img/logo-nav.png" alt="7AM"><span class="brand-rest"><span class="amp">&amp;</span> Realtime CFO™</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li class="mobile-only-link"><a href="diagnostic.html" style="color:var(--gold);">Free Diagnostic →</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a href="diagnostic.html" class="btn btn-primary" style="padding:11px 20px; font-size:.85rem;">Free Diagnostic</a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+<!-- ================= PAGE HERO ================= -->
+<section class="hero" style="min-height:44vh; padding:150px 0 50px;">
+  <div class="hero-video-wrap">
+    <img src="assets/img/hero-poster.jpg" alt="">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <span class="eyebrow">Free · 5 Minutes · 20 Questions</span>
+    <h1>Enterprise Risk <span class="gold-text">Quantifier</span></h1>
+    <p class="lede">The same diagnostic lens we use before any engagement. Answer 20 quick questions across Cash, Inventory, Costing and Controls — get your Top 3 Pain Points, free, in under 5 minutes.</p>
+  </div>
+</section>
+
+<!-- ================= DIAGNOSTIC WIZARD ================= -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="diag-shell reveal" id="diagShell">
+
+      <div class="diag-progress-wrap">
+        <div class="diag-progress-track"><div class="diag-progress-bar" id="diagProgressBar"></div></div>
+        <div class="diag-progress-label" id="diagProgressLabel">Step 1 of 6</div>
+      </div>
+
+      <!-- STEP 0: INTRO -->
+      <div class="diag-step active" data-step="0">
+        <span class="diag-cat-badge">Before You Start</span>
+        <h2 style="font-size:1.5rem; margin-bottom:14px;">20 questions. 4 categories. One honest score.</h2>
+        <p style="color:var(--ink-soft); font-size:.95rem; margin-bottom:10px;">Rate each statement 1–5 based on how true it is for your business today — 1 means "not done at all," 5 means "fully in place and systemized." There are no wrong answers, only where you actually stand.</p>
+        <p style="color:var(--ink-soft); font-size:.95rem;">At the end, you'll see your Finance Clarity Score and your Top 3 Pain Points — the exact gaps costing you time, cash or control right now.</p>
+        <div class="diag-nav" style="justify-content:flex-end; margin-top:28px;">
+          <button type="button" class="btn btn-primary" onclick="diagNext()">Start the Assessment →</button>
+        </div>
+      </div>
+
+      <!-- STEP 1: CASH & WORKING CAPITAL (Q1-5) -->
+      <div class="diag-step" data-step="1">
+        <span class="diag-cat-badge">Category 1 of 4 — Cash &amp; Working Capital</span>
+        <div class="diag-q" data-q="1">
+          <div class="diag-q-text">1. We actively monitor our Cash Conversion Cycle (CCC) on a regular basis.</div>
+          <div class="diag-scale" data-q-scale="1"></div>
+        </div>
+        <div class="diag-q" data-q="2">
+          <div class="diag-q-text">2. We run revenue stress simulations to see how cash would hold up in a downturn.</div>
+          <div class="diag-scale" data-q-scale="2"></div>
+        </div>
+        <div class="diag-q" data-q="3">
+          <div class="diag-q-text">3. We have clear, real-time control over receivable ageing — who owes what, since when.</div>
+          <div class="diag-scale" data-q-scale="3"></div>
+        </div>
+        <div class="diag-q" data-q="4">
+          <div class="diag-q-text">4. We maintain a rolling working capital forecast, not just a static one.</div>
+          <div class="diag-scale" data-q-scale="4"></div>
+        </div>
+        <div class="diag-q" data-q="5">
+          <div class="diag-q-text">5. We reconcile Operating Cash Flow against Net Profit every single period.</div>
+          <div class="diag-scale" data-q-scale="5"></div>
+        </div>
+        <div class="diag-nav">
+          <button type="button" class="btn btn-dark" onclick="diagBack()">← Back</button>
+          <span class="hint" id="diagHint1"></span>
+          <button type="button" class="btn btn-primary" onclick="diagNext()">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: INVENTORY (Q6,7,8,10) -->
+      <div class="diag-step" data-step="2">
+        <span class="diag-cat-badge">Category 2 of 4 — Inventory</span>
+        <div class="diag-q" data-q="6">
+          <div class="diag-q-text">6. Our inventory ageing structure (fast / slow / dead stock) is tracked and reviewed regularly.</div>
+          <div class="diag-scale" data-q-scale="6"></div>
+        </div>
+        <div class="diag-q" data-q="7">
+          <div class="diag-q-text">7. Reorder points and safety stock levels are clearly defined per SKU.</div>
+          <div class="diag-scale" data-q-scale="7"></div>
+        </div>
+        <div class="diag-q" data-q="8">
+          <div class="diag-q-text">8. We have a disciplined write-down process for slow-moving or dead stock.</div>
+          <div class="diag-scale" data-q-scale="8"></div>
+        </div>
+        <div class="diag-q" data-q="10">
+          <div class="diag-q-text">9. MOQ-based overbuying is actively controlled and reviewed, not just accepted as a vendor term.</div>
+          <div class="diag-scale" data-q-scale="10"></div>
+        </div>
+        <div class="diag-nav">
+          <button type="button" class="btn btn-dark" onclick="diagBack()">← Back</button>
+          <span class="hint"></span>
+          <button type="button" class="btn btn-primary" onclick="diagNext()">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: COSTING (Q9,11,12,13,14,15) -->
+      <div class="diag-step" data-step="3">
+        <span class="diag-cat-badge">Category 3 of 4 — Costing</span>
+        <div class="diag-q" data-q="9">
+          <div class="diag-q-text">10. Fixed asset utilisation is tracked — we know what % capacity our machines/equipment actually run at.</div>
+          <div class="diag-scale" data-q-scale="9"></div>
+        </div>
+        <div class="diag-q" data-q="11">
+          <div class="diag-q-text">11. We track Purchase Price Variance (PPV) on raw material and packaging buys.</div>
+          <div class="diag-scale" data-q-scale="11"></div>
+        </div>
+        <div class="diag-q" data-q="12">
+          <div class="diag-q-text">12. Scrap and rejection are measured for financial impact, not just units.</div>
+          <div class="diag-scale" data-q-scale="12"></div>
+        </div>
+        <div class="diag-q" data-q="13">
+          <div class="diag-q-text">13. We know SKU-level contribution margin, not just overall gross margin.</div>
+          <div class="diag-scale" data-q-scale="13"></div>
+        </div>
+        <div class="diag-q" data-q="14">
+          <div class="diag-q-text">14. Freight costs and scheme/discount costs are isolated from base product cost.</div>
+          <div class="diag-scale" data-q-scale="14"></div>
+        </div>
+        <div class="diag-q" data-q="15">
+          <div class="diag-q-text">15. We benchmark energy cost per unit of production.</div>
+          <div class="diag-scale" data-q-scale="15"></div>
+        </div>
+        <div class="diag-nav">
+          <button type="button" class="btn btn-dark" onclick="diagBack()">← Back</button>
+          <span class="hint"></span>
+          <button type="button" class="btn btn-primary" onclick="diagNext()">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: CONTROLS (Q16-20) -->
+      <div class="diag-step" data-step="4">
+        <span class="diag-cat-badge">Category 4 of 4 — Controls</span>
+        <div class="diag-q" data-q="16">
+          <div class="diag-q-text">16. Suspense account entries are aged and cleared regularly, not left open for months.</div>
+          <div class="diag-scale" data-q-scale="16"></div>
+        </div>
+        <div class="diag-q" data-q="17">
+          <div class="diag-q-text">17. Accrual and provision discipline is followed consistently, every single period.</div>
+          <div class="diag-scale" data-q-scale="17"></div>
+        </div>
+        <div class="diag-q" data-q="18">
+          <div class="diag-q-text">18. Revenue cut-off testing is performed at period-end.</div>
+          <div class="diag-scale" data-q-scale="18"></div>
+        </div>
+        <div class="diag-q" data-q="19">
+          <div class="diag-q-text">19. Maker-checker segregation exists for key financial transactions.</div>
+          <div class="diag-scale" data-q-scale="19"></div>
+        </div>
+        <div class="diag-q" data-q="20">
+          <div class="diag-q-text">20. We know exactly how dependent we are on ERP vs. manual Excel work-arounds — and where that risk sits.</div>
+          <div class="diag-scale" data-q-scale="20"></div>
+        </div>
+        <div class="diag-nav">
+          <button type="button" class="btn btn-dark" onclick="diagBack()">← Back</button>
+          <span class="hint"></span>
+          <button type="button" class="btn btn-primary" onclick="diagNext()">See My Results →</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: LEAD CAPTURE -->
+      <div class="diag-step" data-step="5">
+        <span class="diag-cat-badge">Last Step</span>
+        <h2 style="font-size:1.4rem; margin-bottom:6px;">Your assessment is ready.</h2>
+        <p style="color:var(--ink-soft); font-size:.9rem; margin-bottom:22px;">Tell us where to show it — your Finance Clarity Score and Top 3 Pain Points unlock instantly below.</p>
+        <div class="diag-field">
+          <label for="diagEmail">Email *</label>
+          <input type="email" id="diagEmail" required placeholder="you@company.com">
+        </div>
+        <div class="diag-field">
+          <label for="diagCompany">Company Name</label>
+          <input type="text" id="diagCompany" placeholder="Your company">
+        </div>
+        <div class="diag-field">
+          <label for="diagRevenue">Annual Revenue Range</label>
+          <select id="diagRevenue">
+            <option value="">Select a range</option>
+            <option>Under $5M</option>
+            <option>$5M–$25M</option>
+            <option>$25M–$100M</option>
+            <option>$100M–$500M</option>
+            <option>$500M+</option>
+          </select>
+        </div>
+        <div class="diag-nav">
+          <button type="button" class="btn btn-dark" onclick="diagBack()">← Back</button>
+          <span class="hint"></span>
+          <button type="button" class="btn btn-primary" id="diagUnlockBtn" onclick="diagShowResults()">Unlock My Results →</button>
+        </div>
+      </div>
+
+      <!-- STEP 6: RESULTS -->
+      <div class="diag-step" data-step="6">
+        <span class="diag-cat-badge">Your Results</span>
+        <div class="diag-result-score">
+          <div class="big" id="diagScoreBig">—</div>
+          <div class="of">/ 100 Finance Clarity Score</div>
+        </div>
+        <div id="diagCatBars"></div>
+        <h3 style="margin-top:30px; margin-bottom:16px; font-size:1.15rem;">Your Top 3 Pain Points</h3>
+        <div id="diagPainPoints"></div>
+        <div style="margin-top:26px; padding:22px; background:var(--cream); border-radius:14px; text-align:center;">
+          <p style="font-weight:700; color:var(--red-900); margin-bottom:14px;">Want these gaps closed, not just measured?</p>
+          <a href="https://wa.me/917011283542?text=Hi%2C%20I%20just%20completed%20the%20Enterprise%20Risk%20Quantifier%20diagnostic%20and%20want%20to%20talk%20about%20my%20results." target="_blank" class="btn btn-primary">Talk to Us on WhatsApp →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BAND ================= -->
+<section class="section" style="padding-top:20px;">
+  <div class="container">
+    <div class="cta-band reveal">
+      <span class="eyebrow" style="background:rgba(240,166,58,.16); border-color:rgba(240,166,58,.4);">Not Ready for the Full Assessment?</span>
+      <h2>See the system in action first</h2>
+      <p>Try the two free tools — Cash vs Profit Leak Finder and Finance Clarity Diagnostic — no email required.</p>
+      <a href="tools.html" class="btn btn-dark">Explore Free Tools →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const QUESTIONS = [1,2,3,4,5,6,7,8,10,9,11,12,13,14,15,16,17,18,19,20];
+  const CATEGORIES = {
+    cash: {label:'Cash & Working Capital', qs:[1,2,3,4,5]},
+    inventory: {label:'Inventory', qs:[6,7,8,10]},
+    costing: {label:'Costing', qs:[9,11,12,13,14,15]},
+    controls: {label:'Controls', qs:[16,17,18,19,20]}
+  };
+  const PAIN_COPY = {
+    cash: "Cash and working capital visibility is your weakest layer right now — this is usually where cash gets trapped without anyone noticing until it's a crisis. A rolling forecast and CCC monitoring close this fastest.",
+    inventory: "Inventory control has real gaps — ageing stock, undefined reorder points and overbuying quietly tie up capital that should be working elsewhere in the business.",
+    costing: "Costing visibility is thin — without SKU-level contribution margin and PPV tracking, you're pricing and buying partly blind, and margin leaks in ways no P&L line will show you.",
+    controls: "Financial controls need tightening — open suspense accounts, inconsistent accruals or weak maker-checker segregation are exactly where the Last Layer Approach™ finds the most leakage."
+  };
+  const SCALE_LABELS = [
+    {n:1, t:'Not done'},
+    {n:2, t:'Rarely'},
+    {n:3, t:'Somewhat'},
+    {n:4, t:'Mostly'},
+    {n:5, t:'Fully in place'}
+  ];
+  const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwe6hNIr2JUrzan62xpZzp01CAyzzg6oyzyPOI2tjXMxg7Kn2HMYw6CNNP7o1bBpUld/exec';
+
+  const answers = {};
+  let currentStep = 0;
+  const TOTAL_STEPS = 6; // 0..6 inclusive, 6 is results (not counted in progress denominator of 6)
+
+  // build scale UI for each question
+  document.querySelectorAll('.diag-scale').forEach(function(el){
+    const q = el.getAttribute('data-q-scale');
+    SCALE_LABELS.forEach(function(opt){
+      const id = 'q'+q+'_'+opt.n;
+      const wrap = document.createElement('span');
+      wrap.style.position = 'relative';
+      wrap.style.flex = '1';
+      wrap.style.minWidth = '0';
+      wrap.innerHTML = '<input type="radio" name="q'+q+'" id="'+id+'" value="'+opt.n+'"><label for="'+id+'"><span class="n">'+opt.n+'</span><span class="t">'+opt.t+'</span></label>';
+      el.appendChild(wrap);
+    });
+  });
+
+  document.querySelectorAll('.diag-scale input').forEach(function(input){
+    input.addEventListener('change', function(){
+      const qNum = this.name.replace('q','');
+      answers[qNum] = parseInt(this.value, 10);
+    });
+  });
+
+  function showStep(n){
+    document.querySelectorAll('.diag-step').forEach(function(s){ s.classList.remove('active'); });
+    const target = document.querySelector('.diag-step[data-step="'+n+'"]');
+    if(target) target.classList.add('active');
+    currentStep = n;
+    const pct = Math.min(100, Math.round((n/6)*100));
+    document.getElementById('diagProgressBar').style.width = pct + '%';
+    const labels = ['Getting Started','Step 1 of 4 — Cash & Working Capital','Step 2 of 4 — Inventory','Step 3 of 4 — Costing','Step 4 of 4 — Controls','Almost Done — Your Details','Your Results'];
+    document.getElementById('diagProgressLabel').textContent = labels[n] || '';
+    document.getElementById('diagShell').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function currentStepQuestions(){
+    const el = document.querySelector('.diag-step[data-step="'+currentStep+'"]');
+    if(!el) return [];
+    return Array.from(el.querySelectorAll('[data-q]')).map(function(d){ return d.getAttribute('data-q'); });
+  }
+
+  window.diagNext = function(){
+    const qs = currentStepQuestions();
+    const missing = qs.filter(function(q){ return !answers[q]; });
+    if(missing.length){
+      alert('Please rate all ' + qs.length + ' statements before continuing (' + missing.length + ' left).');
+      return;
+    }
+    showStep(currentStep + 1);
+  };
+  window.diagBack = function(){ showStep(Math.max(0, currentStep - 1)); };
+
+  window.diagShowResults = function(){
+    const email = document.getElementById('diagEmail').value.trim();
+    if(!email || email.indexOf('@') === -1){
+      alert('Please enter a valid email to see your results.');
+      return;
+    }
+    const company = document.getElementById('diagCompany').value.trim();
+    const revenue = document.getElementById('diagRevenue').value;
+
+    // compute scores
+    const catScores = {};
+    let totalSum = 0, totalMax = 0;
+    Object.keys(CATEGORIES).forEach(function(key){
+      const cat = CATEGORIES[key];
+      let sum = 0;
+      cat.qs.forEach(function(q){ sum += (answers[q] || 0); });
+      const max = cat.qs.length * 5;
+      catScores[key] = {label: cat.label, sum: sum, max: max, pct: Math.round((sum/max)*100)};
+      totalSum += sum; totalMax += max;
+    });
+    const overallPct = Math.round((totalSum/totalMax)*100);
+
+    document.getElementById('diagScoreBig').textContent = overallPct;
+
+    // render category bars
+    const barsHtml = Object.keys(CATEGORIES).map(function(key){
+      const c = catScores[key];
+      return '<div class="diag-cat-bar-row"><div class="lbl"><span>'+c.label+'</span><span>'+c.pct+'%</span></div><div class="diag-cat-bar-track"><div class="diag-cat-bar-fill" style="width:'+c.pct+'%;"></div></div></div>';
+    }).join('');
+    document.getElementById('diagCatBars').innerHTML = barsHtml;
+
+    // top 3 pain points = 3 lowest-scoring categories
+    const ranked = Object.keys(catScores).sort(function(a,b){ return catScores[a].pct - catScores[b].pct; });
+    const top3 = ranked.slice(0, 3);
+    const painHtml = top3.map(function(key, i){
+      const c = catScores[key];
+      return '<div class="diag-pain-card"><span class="rank">'+(i+1)+'</span><h4>'+c.label+' — '+c.pct+'%</h4><p>'+PAIN_COPY[key]+'</p></div>';
+    }).join('');
+    document.getElementById('diagPainPoints').innerHTML = painHtml;
+
+    // fire lead capture (non-blocking)
+    try{
+      fetch(SHEET_ENDPOINT, {
+        method: 'POST', mode: 'no-cors', headers: {'Content-Type':'text/plain'},
+        body: JSON.stringify({
+          type: 'DiagnosticLead', email: email, company: company, revenueRange: revenue,
+          overallScore: overallPct,
+          cash: catScores.cash.pct, inventory: catScores.inventory.pct,
+          costing: catScores.costing.pct, controls: catScores.controls.pct
+        })
+      }).catch(function(){});
+    }catch(e){}
+
+    showStep(6);
+  };
+})();
+</script>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand"><img src="assets/img/logo-nav.png" alt="7AM"><span class="brand-rest"><span class="amp">&amp;</span> Realtime CFO™</span></a>
+        <p>Your CFO in your pocket. One Page. Anytime. Anywhere. Daily Financial Clarity and Visibility from Scattered Data.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="books.html">Books</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="https://wa.me/917011283542" target="_blank">WhatsApp</a></li>
+          <li><a href="https://linkedin.com/in/surajkumarlohani" target="_blank">LinkedIn — Suraj</a></li>
+          <li><a href="https://www.linkedin.com/in/shikhakutariyar" target="_blank">LinkedIn — Shikha</a></li>
+          <li><a href="https://www.youtube.com/@surajkumarlohani" target="_blank">YouTube</a></li>
+          <li><a href="mailto:surajkumarlohani@gmail.com">Email</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Get Started</h5>
+        <ul>
+          <li><a href="diagnostic.html">Free Diagnostic</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 7AM &amp; Realtime CFO™. All rights reserved.</span>
+      <span>Ghaziabad, Uttar Pradesh, India</span>
+    </div>
+    <div class="footer-mantra">ॐ नमो श्री भगवती जगदम्बिके दुर्गायै नमः</div>
+  </div>
+</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
