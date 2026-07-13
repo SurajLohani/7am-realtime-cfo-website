@@ -423,6 +423,20 @@ h3{font-size:1.25rem;}
 .gap-sample-card .gap-row:first-of-type{border-top:none; padding-top:0;}
 .gap-sample-card .gap-row .lbl{display:block; font-size:.7rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-2); margin-bottom:4px;}
 .gap-sample-card .gap-row p{font-size:.9rem; color:var(--ink-soft);}
+
+/* ---------- Floating WhatsApp button (sitewide, injected via main.js) ---------- */
+.wa-float{
+  position:fixed; bottom:24px; right:24px; z-index:999;
+  width:58px; height:58px; border-radius:50%; background:#25D366;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 10px 28px rgba(0,0,0,.3); transition:transform .2s ease, box-shadow .2s ease;
+}
+.wa-float:hover{transform:scale(1.08); box-shadow:0 12px 32px rgba(0,0,0,.38);}
+.wa-float svg{width:28px; height:28px; fill:#fff;}
+@media (max-width:600px){
+  .wa-float{width:52px; height:52px; bottom:18px; right:18px;}
+  .wa-float svg{width:25px; height:25px;}
+}
 @media (max-width:600px){
   .diag-step{padding:22px 18px 26px;}
   .diag-scale{gap:6px;}
