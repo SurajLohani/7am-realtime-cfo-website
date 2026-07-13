@@ -427,5 +427,9 @@ h3{font-size:1.25rem;}
   background:rgba(232,137,12,.08); border:1.5px solid rgba(232,137,12,.35);
   display:flex; align-items:center; justify-content:center;
 }
-.contact-icon svg{width:28px; height:28px; stroke:var(--gold-2); stroke-width:1.6; color:var(--gold-2);}
+.contact-icon svg{width:28px; height:28px;}
 .dual-card:hover .contact-icon{background:rgba(232,137,12,.16); transform:scale(1.05); transition:all .2s ease;}
+.icon-whatsapp svg{color:#25D366;}
+.icon-linkedin svg{color:#0A66C2;}
+.icon-youtube svg{color:#FF0000;}
+.icon-email svg{color:var(--gold-2);}
