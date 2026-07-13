@@ -422,6 +422,41 @@ h3{font-size:1.25rem;}
   .diag-scale label .t{display:none;}
 }
 
+/* ---------- Lead capture form (shared: books / templates / contact) ---------- */
+.lead-form{display:grid; grid-template-columns:1fr 1fr; gap:14px; text-align:left;}
+.lead-form .full{grid-column:1 / -1;}
+@media (max-width:640px){.lead-form{grid-template-columns:1fr;}}
+.lead-form label{display:block; font-weight:700; font-size:.8rem; color:var(--red-900); margin-bottom:6px;}
+.lead-form input, .lead-form select, .lead-form textarea{
+  width:100%; padding:13px 16px; border-radius:10px; border:1px solid #e3d2ae; font-size:.92rem;
+  font-family:inherit; background:#fdfaf3; color:var(--ink);
+}
+.lead-form input:focus, .lead-form select:focus, .lead-form textarea:focus{outline:none; border-color:var(--gold-2);}
+.lead-form textarea{resize:vertical; min-height:110px;}
+.lead-form .submit-row{grid-column:1 / -1; margin-top:6px; text-align:center;}
+.lead-form .submit-row .btn{width:100%; justify-content:center;}
+.lead-note{font-size:.78rem; color:var(--ink-soft); margin-top:14px; text-align:center;}
+
+/* ---------- Coming Soon template/tool cards ---------- */
+.tpl-card{
+  background:var(--white); border-radius:14px; padding:28px 26px; box-shadow:0 12px 30px -18px rgba(46,5,5,.3);
+  border:1px solid #f1e4d0; display:flex; flex-direction:column; position:relative;
+}
+.tpl-card .tpl-badge{
+  position:absolute; top:18px; right:18px; font-size:.66rem; font-weight:800; text-transform:uppercase;
+  letter-spacing:.05em; color:var(--white); background:var(--red-600); padding:4px 10px; border-radius:999px;
+}
+.tpl-card .tpl-badge.free{background:var(--green);}
+.tpl-card h4{font-size:1.05rem; color:var(--red-950); margin-top:6px; padding-right:70px;}
+.tpl-card .tpl-price{font-weight:900; color:var(--gold-2); font-size:1.1rem; margin-top:10px;}
+.tpl-card p.tpl-desc{font-size:.87rem; color:var(--ink-soft); margin-top:10px; flex:1;}
+.tpl-card .tpl-tags{display:flex; gap:6px; flex-wrap:wrap; margin-top:12px;}
+.tpl-card .tpl-tags span{font-size:.68rem; font-weight:700; color:var(--red-700); background:#fdf6ea; border:1px solid #f1e0bf; padding:3px 9px; border-radius:999px;}
+.tpl-card .tpl-cta{margin-top:16px; font-weight:700; font-size:.85rem; color:#b9b9b9; cursor:not-allowed;}
+.tpl-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+@media (max-width:900px){.tpl-grid{grid-template-columns:1fr 1fr;}}
+@media (max-width:600px){.tpl-grid{grid-template-columns:1fr;}}
+
 /* ---------- Contact page premium icons ---------- */
 .contact-icon{
   width:66px; height:66px; border-radius:50%; margin:0 auto 16px;

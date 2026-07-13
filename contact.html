@@ -28,6 +28,7 @@
         <li><a href="services.html">Services</a></li>
         <li><a href="books.html">Books</a></li>
         <li><a href="tools.html">Tools</a></li>
+        <li><a href="templates.html">Templates</a></li>
         <li><a href="case-studies.html">Case Studies</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
@@ -49,6 +50,55 @@
     <span class="eyebrow">Let's Talk</span>
     <h1>Get in <span class="gold-text">Touch</span></h1>
     <p class="lede">Fastest way in is WhatsApp. For a structured first step, start with the free diagnostic — it tells us exactly where to focus the conversation.</p>
+  </div>
+</section>
+
+<!-- ================= GET IN TOUCH FORM ================= -->
+<section class="section" id="get-in-touch" style="background:#fff; padding-bottom:56px;">
+  <div class="container">
+    <div class="reveal" style="max-width:640px; margin:0 auto; background:var(--cream); border-radius:var(--radius); padding:40px 36px; box-shadow:var(--shadow);">
+      <div style="text-align:center; margin-bottom:26px;">
+        <span class="eyebrow">Get in Touch</span>
+        <h2 style="font-size:1.6rem;">Send us a message</h2>
+        <p class="lede" style="margin:8px auto 0; text-align:center;">Name, email and a phone number so we can reach you on whichever channel is fastest. We reply within one business day.</p>
+      </div>
+      <form id="contactForm" onsubmit="return submitContactForm(event)" class="lead-form">
+        <div>
+          <label for="ctName">Full Name *</label>
+          <input type="text" id="ctName" required placeholder="Your name">
+        </div>
+        <div>
+          <label for="ctEmail">Email *</label>
+          <input type="email" id="ctEmail" required placeholder="you@company.com">
+        </div>
+        <div>
+          <label for="ctPhone">Phone (with country code) *</label>
+          <input type="tel" id="ctPhone" required placeholder="+91 98765 43210">
+        </div>
+        <div>
+          <label for="ctCountry">Country *</label>
+          <select id="ctCountry" required>
+            <option value="">Select country</option>
+            <option>India</option>
+            <option>UAE</option>
+            <option>United Kingdom</option>
+            <option>Singapore</option>
+            <option>Australia</option>
+            <option>Saudi Arabia</option>
+            <option>Netherlands</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="full">
+          <label for="ctMessage">What can we help with?</label>
+          <textarea id="ctMessage" placeholder="A short line on your business and what you're looking for"></textarea>
+        </div>
+        <div class="submit-row">
+          <button type="submit" class="btn btn-primary">Send Message →</button>
+          <p class="lead-note" id="ctStatus">Prefer WhatsApp? DM "MORNING" to +91-7011283542 for the fastest reply.</p>
+        </div>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -143,6 +193,7 @@
       <h2>Start with the free diagnostic</h2>
       <p>Ten minutes, no obligation — it ranks exactly where your biggest visibility gap is before we ever talk pricing or scope.</p>
       <a href="diagnostic.html" class="btn btn-primary">Start the Free Diagnostic →</a>
+      <p style="margin-top:18px;"><a href="assets/docs/7AM-Realtime-CFO-Company-Profile.pdf" target="_blank" style="color:var(--gold-light); font-weight:700; font-size:.85rem;">📄 Download the Company Profile (PDF) →</a></p>
     </div>
   </div>
 </section>
@@ -160,6 +211,7 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="books.html">Books</a></li>
           <li><a href="tools.html">Tools</a></li>
+        <li><a href="templates.html">Templates</a></li>
           <li><a href="case-studies.html">Case Studies</a></li>
           <li><a href="blog.html">Blog</a></li>
         </ul>
@@ -190,5 +242,22 @@
   </div>
 </footer>
 <script src="assets/js/main.js"></script>
+<script>
+function submitContactForm(ev){
+  ev.preventDefault();
+  var fields = {
+    name: document.getElementById('ctName').value,
+    email: document.getElementById('ctEmail').value,
+    phone: document.getElementById('ctPhone').value,
+    country: document.getElementById('ctCountry').value,
+    message: document.getElementById('ctMessage').value
+  };
+  submitLead('ContactForm', fields);
+  document.getElementById('contactForm').querySelectorAll('input,select,textarea,button').forEach(function(el){ el.disabled = true; });
+  document.getElementById('contactForm').querySelector('button').textContent = 'Sent ✓';
+  document.getElementById('ctStatus').textContent = '✅ Message sent — we reply within one business day. Prefer WhatsApp? DM "MORNING" to +91-7011283542 for the fastest reply.';
+  return false;
+}
+</script>
 </body>
 </html>

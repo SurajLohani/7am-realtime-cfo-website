@@ -28,6 +28,7 @@
         <li><a href="services.html">Services</a></li>
         <li><a href="books.html" class="active">Books</a></li>
         <li><a href="tools.html">Tools</a></li>
+        <li><a href="templates.html">Templates</a></li>
         <li><a href="case-studies.html">Case Studies</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -55,12 +56,39 @@
 <!-- ================= EMAIL GATE ================= -->
 <section class="section section-cream" style="padding-top:56px; padding-bottom:20px;">
   <div class="container">
-    <div class="reveal" style="max-width:560px; margin:0 auto; text-align:center; background:#fff; border-radius:var(--radius); padding:36px 32px; box-shadow:var(--shadow);">
+    <div class="reveal" style="max-width:640px; margin:0 auto; text-align:center; background:#fff; border-radius:var(--radius); padding:36px 32px; box-shadow:var(--shadow);">
       <h3 style="margin-bottom:10px;">Unlock all 7 books — free</h3>
-      <p style="color:var(--ink-soft); font-size:.9rem; margin-bottom:20px;">Enter your email once, download any or all of them.</p>
-      <form id="gateForm" onsubmit="return unlockBooks(event)" style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
-        <input type="email" id="gateEmail" placeholder="you@company.com" required style="flex:1; min-width:220px; padding:13px 16px; border-radius:10px; border:1px solid #e3d2ae; font-size:.92rem;">
-        <button type="submit" class="btn btn-primary">Unlock Library →</button>
+      <p style="color:var(--ink-soft); font-size:.9rem; margin-bottom:20px;">Tell us a little about you once, download any or all of them.</p>
+      <form id="gateForm" onsubmit="return unlockBooks(event)" class="lead-form">
+        <div>
+          <label for="gateName">Full Name *</label>
+          <input type="text" id="gateName" required placeholder="Your name">
+        </div>
+        <div>
+          <label for="gateEmail">Email *</label>
+          <input type="email" id="gateEmail" required placeholder="you@company.com">
+        </div>
+        <div>
+          <label for="gatePhone">Phone (with country code) *</label>
+          <input type="tel" id="gatePhone" required placeholder="+91 98765 43210">
+        </div>
+        <div>
+          <label for="gateCountry">Country *</label>
+          <select id="gateCountry" required>
+            <option value="">Select country</option>
+            <option>India</option>
+            <option>UAE</option>
+            <option>United Kingdom</option>
+            <option>Singapore</option>
+            <option>Australia</option>
+            <option>Saudi Arabia</option>
+            <option>Netherlands</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="submit-row">
+          <button type="submit" class="btn btn-primary">Unlock Library →</button>
+        </div>
       </form>
     </div>
   </div>
@@ -173,17 +201,18 @@
 </section>
 
 <script>
-const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwe6hNIr2JUrzan62xpZzp01CAyzzg6oyzyPOI2tjXMxg7Kn2HMYw6CNNP7o1bBpUld/exec';
 function unlockBooks(ev){
   ev.preventDefault();
-  const email = document.getElementById('gateEmail').value;
+  const fields = {
+    name: document.getElementById('gateName').value,
+    email: document.getElementById('gateEmail').value,
+    phone: document.getElementById('gatePhone').value,
+    country: document.getElementById('gateCountry').value
+  };
   document.querySelectorAll('.book-dl').forEach(function(a){ a.classList.add('unlocked'); });
   document.getElementById('booksLocked').textContent = '✅ Unlocked — download links are live below.';
   document.getElementById('gateForm').querySelector('button').textContent = 'Unlocked ✓';
-  fetch(SHEET_ENDPOINT, {
-    method: 'POST', mode: 'no-cors', headers: {'Content-Type':'text/plain'},
-    body: JSON.stringify({ type: 'BookRequest', email: email })
-  }).catch(function(){});
+  submitLead('BookRequest', fields);
   return false;
 }
 </script>
@@ -201,6 +230,7 @@ function unlockBooks(ev){
           <li><a href="services.html">Services</a></li>
           <li><a href="books.html">Books</a></li>
           <li><a href="tools.html">Tools</a></li>
+        <li><a href="templates.html">Templates</a></li>
           <li><a href="case-studies.html">Case Studies</a></li>
           <li><a href="blog.html">Blog</a></li>
         </ul>

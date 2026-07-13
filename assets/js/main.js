@@ -1,4 +1,15 @@
 // 7AM & Realtime CFO™ — shared site behavior
+
+// Shared lead-capture endpoint (Google Apps Script Web App -> Google Sheet)
+var LEAD_SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwe6hNIr2JUrzan62xpZzp01CAyzzg6oyzyPOI2tjXMxg7Kn2HMYw6CNNP7o1bBpUld/exec';
+function submitLead(type, fields) {
+  var payload = Object.assign({ type: type }, fields);
+  return fetch(LEAD_SHEET_ENDPOINT, {
+    method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(payload)
+  }).catch(function () {});
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   // Header scroll state
   var header = document.querySelector('.site-header');
