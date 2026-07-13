@@ -414,6 +414,15 @@ h3{font-size:1.25rem;}
 .diag-pain-card .rank{display:inline-block; background:var(--red-800); color:var(--white); font-weight:900; font-size:.75rem; width:24px; height:24px; line-height:24px; text-align:center; border-radius:50%; margin-right:8px;}
 .diag-pain-card h4{display:inline; font-size:1rem; color:var(--red-950);}
 .diag-pain-card p{font-size:.86rem; color:var(--ink-soft); margin-top:10px;}
+
+/* ---------- 5-Gap sample card (gap-diagnostic.html) ---------- */
+.gap-sample-card{background:var(--cream); border:1px solid #f1e0bf; border-radius:16px; padding:26px 28px; box-shadow:var(--shadow);}
+.gap-sample-card .gap-sample-tag{display:inline-block; font-size:.7rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--red-700); background:#fdf6ea; border:1px solid #f1e0bf; padding:4px 12px; border-radius:999px;}
+.gap-sample-card h4{font-size:1.1rem; color:var(--red-950); margin-top:14px; margin-bottom:6px;}
+.gap-sample-card .gap-row{margin-top:14px; padding-top:14px; border-top:1px solid #f1e0bf;}
+.gap-sample-card .gap-row:first-of-type{border-top:none; padding-top:0;}
+.gap-sample-card .gap-row .lbl{display:block; font-size:.7rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-2); margin-bottom:4px;}
+.gap-sample-card .gap-row p{font-size:.9rem; color:var(--ink-soft);}
 @media (max-width:600px){
   .diag-step{padding:22px 18px 26px;}
   .diag-scale{gap:6px;}
