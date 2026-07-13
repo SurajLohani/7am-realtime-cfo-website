@@ -11,6 +11,25 @@ function submitLead(type, fields) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+
+  // Quick Contact strip — sitewide, before footer on every page
+  var qcForm = document.querySelector('.quick-contact-form');
+  if (qcForm) {
+    qcForm.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var fields = {
+        name: qcForm.querySelector('[name="qcName"]').value,
+        email: qcForm.querySelector('[name="qcEmail"]').value,
+        phone: qcForm.querySelector('[name="qcPhone"]').value,
+        page: window.location.pathname
+      };
+      submitLead('QuickContact', fields);
+      qcForm.querySelectorAll('input,button').forEach(function (el) { el.disabled = true; });
+      qcForm.querySelector('button').textContent = 'Sent ✓';
+      var note = qcForm.parentElement.querySelector('.quick-contact-note');
+      if (note) note.textContent = '✅ Got it — we reply within one business day. Prefer WhatsApp? DM "MORNING" to +91-7011283542.';
+    });
+  }
   // Header scroll state
   var header = document.querySelector('.site-header');
   function onScroll() {

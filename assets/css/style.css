@@ -457,6 +457,24 @@ h3{font-size:1.25rem;}
 @media (max-width:900px){.tpl-grid{grid-template-columns:1fr 1fr;}}
 @media (max-width:600px){.tpl-grid{grid-template-columns:1fr;}}
 
+/* ---------- Quick Contact strip (sitewide, before footer) ---------- */
+.quick-contact{background:var(--red-950); padding:52px 0;}
+.quick-contact .qc-head{text-align:center; margin-bottom:26px;}
+.quick-contact .qc-head h3{color:var(--white); font-size:1.3rem;}
+.quick-contact .qc-head p{color:rgba(255,255,255,.72); font-size:.88rem; margin-top:6px;}
+.quick-contact-form{
+  display:flex; gap:12px; flex-wrap:wrap; align-items:flex-start; justify-content:center; max-width:900px; margin:0 auto;
+}
+.quick-contact-form input{
+  flex:1; min-width:180px; padding:13px 16px; border-radius:10px; border:1px solid rgba(240,166,58,.35);
+  font-size:.9rem; font-family:inherit; background:rgba(255,255,255,.06); color:var(--white);
+}
+.quick-contact-form input::placeholder{color:rgba(255,255,255,.45);}
+.quick-contact-form input:focus{outline:none; border-color:var(--gold);}
+.quick-contact-form button{flex-shrink:0;}
+.quick-contact-note{text-align:center; font-size:.76rem; color:rgba(255,255,255,.5); margin-top:14px;}
+@media (max-width:700px){.quick-contact-form{flex-direction:column;} .quick-contact-form input, .quick-contact-form button{width:100%;}}
+
 /* ---------- Contact page premium icons ---------- */
 .contact-icon{
   width:66px; height:66px; border-radius:50%; margin:0 auto 16px;
