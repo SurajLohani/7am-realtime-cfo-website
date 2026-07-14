@@ -95,6 +95,18 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(wa);
   })();
 
+  // Sticky mobile CTA bar — sitewide (visible on mobile only, via CSS), injected on every page
+  // Skipped on the diagnostic pages themselves, where this CTA would just point back at the same page.
+  (function () {
+    var path = window.location.pathname.split('/').pop() || 'index.html';
+    var skipOn = ['diagnostic.html', 'gap-diagnostic.html', 'manufacturing-risk-assessment.html'];
+    if (skipOn.indexOf(path) !== -1) return;
+    var bar = document.createElement('div');
+    bar.className = 'sticky-cta-bar';
+    bar.innerHTML = '<a href="diagnostic.html" class="btn btn-primary">Get Your Free Diagnostic →</a>';
+    document.body.appendChild(bar);
+  })();
+
   // ================= Ask7AM guided chat widget — sitewide, injected on every page =================
   (function () {
     var FRIENDLY_CATS = [

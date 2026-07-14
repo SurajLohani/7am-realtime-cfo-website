@@ -440,6 +440,22 @@ h3{font-size:1.25rem;}
   .wa-float span{font-size:.78rem;}
 }
 
+/* ---------- Sticky mobile CTA bar (sitewide, injected via main.js, mobile only) ---------- */
+.sticky-cta-bar{display:none;}
+@media (max-width:700px){
+  .sticky-cta-bar{
+    display:flex; position:fixed; left:0; right:0; bottom:0; z-index:998;
+    background:var(--red-950); padding:10px 14px; border-top:2px solid var(--gold);
+    box-shadow:0 -6px 20px rgba(0,0,0,.28);
+  }
+  .sticky-cta-bar a{flex:1; text-align:center; justify-content:center; padding:12px 10px; font-size:.85rem;}
+  body{padding-bottom:66px;}
+  /* Nudge the round floating buttons up so the sticky bar doesn't cover them */
+  .wa-float{bottom:82px !important;}
+  .ask7am-float{bottom:140px !important;}
+  .ask7am-panel{bottom:202px !important;}
+}
+
 /* ---------- Cookie consent banner (sitewide, injected via main.js) ---------- */
 .cookie-banner{
   position:fixed; left:0; right:0; bottom:0; z-index:1001;
