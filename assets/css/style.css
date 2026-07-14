@@ -588,6 +588,36 @@ h3{font-size:1.25rem;}
 .icon-youtube svg{color:#FF0000;}
 .icon-email svg{color:var(--gold-2);}
 
+/* ---------- Book a Demo / Free Consultation modal (sitewide, injected via main.js) ---------- */
+.demo-cta-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:14px;}
+.demo-cta-row .btn{padding:11px 22px; font-size:.85rem;}
+body.booking-modal-lock{overflow:hidden;}
+.booking-modal-overlay{
+  position:fixed; inset:0; z-index:2000; background:rgba(20,6,6,.6);
+  display:flex; align-items:center; justify-content:center; padding:20px;
+  opacity:0; pointer-events:none; transition:opacity .2s ease;
+}
+.booking-modal-overlay.open{opacity:1; pointer-events:auto;}
+.booking-modal{
+  background:#fff; border-radius:18px; max-width:560px; width:100%; max-height:90vh; overflow-y:auto;
+  padding:36px 32px; position:relative; box-shadow:0 30px 80px rgba(0,0,0,.4);
+  transform:translateY(16px) scale(.98); transition:transform .2s ease;
+}
+.booking-modal-overlay.open .booking-modal{transform:translateY(0) scale(1);}
+.booking-modal-close{
+  position:absolute; top:16px; right:16px; background:none; border:none; font-size:1.6rem;
+  line-height:1; color:var(--ink-soft); cursor:pointer; padding:4px 8px;
+}
+.booking-modal-head{text-align:center; margin-bottom:22px;}
+.booking-modal-head h3{font-size:1.35rem; color:var(--red-950); margin-top:8px;}
+.booking-modal-head p{font-size:.88rem; color:var(--ink-soft); margin-top:8px;}
+.booking-modal select{
+  width:100%; padding:13px 16px; border-radius:10px; border:1px solid #e3d2ae; font-size:.92rem;
+  font-family:inherit; background:#fdfaf3; color:var(--ink); appearance:auto;
+}
+.booking-modal select:focus{outline:none; border-color:var(--gold-2);}
+@media (max-width:600px){ .booking-modal{padding:28px 22px;} }
+
 /* ---------- Ask7AM chat widget (sitewide, injected via main.js) ---------- */
 .ask7am-float{
   position:fixed; bottom:92px; right:24px; z-index:999;
