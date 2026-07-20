@@ -95,6 +95,121 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(wa);
   })();
 
+  // Sticky mobile CTA bar — sitewide (visible on mobile only, via CSS), injected on every page
+  // Skipped on the diagnostic pages themselves, where this CTA would just point back at the same page.
+  (function () {
+    var path = window.location.pathname.split('/').pop() || 'index.html';
+    var skipOn = ['diagnostic.html', 'gap-diagnostic.html', 'manufacturing-risk-assessment.html'];
+    if (skipOn.indexOf(path) !== -1) return;
+    var bar = document.createElement('div');
+    bar.className = 'sticky-cta-bar';
+    bar.innerHTML = '<a href="diagnostic.html" class="btn btn-primary">Get Your Free Diagnostic →</a>';
+    document.body.appendChild(bar);
+  })();
+
+  // ================= Book a Demo / Free Consultation modal — sitewide, injected on every page =================
+  (function () {
+    var BUSINESS_TYPES = [
+      'Textile & Export Manufacturing', 'FMCG & Distribution', 'Pharma, Healthcare & Hospital',
+      'Real Estate', 'Trading', 'Retail', 'Franchise (MBO / COCO / FOCO)', 'Services',
+      'Manufacturing (Other)', 'Other'
+    ];
+
+    var overlay = document.createElement('div');
+    overlay.className = 'booking-modal-overlay';
+    overlay.innerHTML =
+      '<div class="booking-modal">' +
+        '<button type="button" class="booking-modal-close" aria-label="Close">&times;</button>' +
+        '<div class="booking-modal-head">' +
+          '<span class="eyebrow" id="bookingModalEyebrow">Book a Demo</span>' +
+          '<h3 id="bookingModalTitle">See 7AM &amp; Realtime CFO&trade; on your own numbers</h3>' +
+          '<p>Tell us a bit about your business — we reply within one business day.</p>' +
+        '</div>' +
+        '<form id="bookingModalForm" class="lead-form">' +
+          '<div>' +
+            '<label for="bmName">Full Name *</label>' +
+            '<input type="text" id="bmName" required placeholder="Your name">' +
+          '</div>' +
+          '<div>' +
+            '<label for="bmCompany">Company Name *</label>' +
+            '<input type="text" id="bmCompany" required placeholder="Your company">' +
+          '</div>' +
+          '<div class="full">' +
+            '<label for="bmBusinessType">Type of Business *</label>' +
+            '<select id="bmBusinessType" required>' +
+              '<option value="" disabled selected>Select your industry</option>' +
+              BUSINESS_TYPES.map(function (t) { return '<option value="' + t + '">' + t + '</option>'; }).join('') +
+            '</select>' +
+          '</div>' +
+          '<div>' +
+            '<label for="bmEmail">Email *</label>' +
+            '<input type="email" id="bmEmail" required placeholder="you@company.com">' +
+          '</div>' +
+          '<div>' +
+            '<label for="bmPhone">Phone (with country code) *</label>' +
+            '<input type="tel" id="bmPhone" required placeholder="+91 XXXXX XXXXX">' +
+          '</div>' +
+          '<div class="submit-row">' +
+            '<button type="submit" class="btn btn-primary" id="bookingModalSubmit">Send Request &rarr;</button>' +
+          '</div>' +
+        '</form>' +
+        '<div id="bookingModalThanks" style="display:none; text-align:center; padding:20px 0;">' +
+          '<h3>Thank you!</h3>' +
+          '<p style="color:var(--ink-soft); margin-top:8px;">Your request has been received. We will reply within one business day — or DM &quot;MORNING&quot; on WhatsApp for a faster response.</p>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+
+    var requestType = 'Book a Demo';
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.body.classList.remove('booking-modal-lock');
+    }
+    window.openBookingModal = function (type) {
+      requestType = type || 'Book a Demo';
+      var eyebrow = document.getElementById('bookingModalEyebrow');
+      var title = document.getElementById('bookingModalTitle');
+      var form = document.getElementById('bookingModalForm');
+      var thanks = document.getElementById('bookingModalThanks');
+      if (eyebrow) eyebrow.textContent = requestType;
+      if (title) title.textContent = requestType === 'Free Consultation'
+        ? 'Talk it through before you commit to anything'
+        : "See 7AM & Realtime CFO™ on your own numbers";
+      if (form) form.style.display = '';
+      if (thanks) thanks.style.display = 'none';
+      overlay.classList.add('open');
+      document.body.classList.add('booking-modal-lock');
+    };
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeModal();
+    });
+    overlay.querySelector('.booking-modal-close').addEventListener('click', closeModal);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    document.getElementById('bookingModalForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var submitBtn = document.getElementById('bookingModalSubmit');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      submitLead('BookDemoLead', {
+        name: document.getElementById('bmName').value,
+        company: document.getElementById('bmCompany').value,
+        businessType: document.getElementById('bmBusinessType').value,
+        email: document.getElementById('bmEmail').value,
+        phone: document.getElementById('bmPhone').value,
+        requestType: requestType,
+        page: window.location.pathname.split('/').pop() || 'index.html'
+      }).then(function () {
+        document.getElementById('bookingModalForm').style.display = 'none';
+        document.getElementById('bookingModalThanks').style.display = '';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Request →';
+      });
+    });
+  })();
+
   // ================= Ask7AM guided chat widget — sitewide, injected on every page =================
   (function () {
     var FRIENDLY_CATS = [
@@ -171,8 +286,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function showTopics() {
-      addChips(FRIENDLY_CATS.map(function (c) { return c.label; }).concat(['📖 See all 1000 FAQs', '💬 Talk to Suraj on WhatsApp']), function (label) {
-        if (label === '📖 See all 1000 FAQs') {
+      addChips(FRIENDLY_CATS.map(function (c) { return c.label; }).concat(['📖 See all 1286 FAQs', '💬 Talk to Suraj on WhatsApp']), function (label) {
+        if (label === '📖 See all 1286 FAQs') {
           addUserMsg(label);
           window.open('faq.html', '_blank');
           addBotMsg('Opened the full FAQ page in a new tab. Anything else I can help with?');
@@ -224,9 +339,9 @@ document.addEventListener('DOMContentLoaded', function () {
       addUserMsg(text);
       var results = searchFAQ(text);
       if (!results.length) {
-        addBotMsg("I couldn't find an exact match for that in our FAQ bank. You can browse all 1000 questions or message Suraj directly on WhatsApp for a personal answer.");
-        addChips(['📖 See all 1000 FAQs', '💬 Talk to Suraj on WhatsApp', '⬅ Back to topics'], function (label) {
-          if (label === '📖 See all 1000 FAQs') { addUserMsg(label); window.open('faq.html', '_blank'); addBotMsg('Opened in a new tab. Anything else?'); return; }
+        addBotMsg("I couldn't find an exact match for that in our FAQ bank. You can browse all 1,286 questions or message Suraj directly on WhatsApp for a personal answer.");
+        addChips(['📖 See all 1286 FAQs', '💬 Talk to Suraj on WhatsApp', '⬅ Back to topics'], function (label) {
+          if (label === '📖 See all 1286 FAQs') { addUserMsg(label); window.open('faq.html', '_blank'); addBotMsg('Opened in a new tab. Anything else?'); return; }
           if (label === '💬 Talk to Suraj on WhatsApp') { addUserMsg(label); window.open('https://wa.me/917011283542?text=' + encodeURIComponent('Hi, I have a question about 7AM & Realtime CFO™.'), '_blank'); addBotMsg('Opened WhatsApp for you. Anything else?'); return; }
           addUserMsg(label); addBotMsg('Sure — pick a topic:'); showTopics();
         });
@@ -278,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    // Lazy-load the 1000-question FAQ data bank only when the widget is first opened
+    // Lazy-load the 1286-question FAQ data bank only when the widget is first opened
     var faqDataLoaded = false;
     fab.addEventListener('click', function loadData() {
       if (faqDataLoaded) return;

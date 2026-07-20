@@ -211,6 +211,66 @@ h3{font-size:1.25rem;}
 .step h4{font-size:1.02rem; color:var(--red-950); margin-bottom:8px;}
 .step p{font-size:.86rem; color:var(--ink-soft);}
 
+/* ---------- 9-stage implementation roadmap ---------- */
+.roadmap-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+@media (max-width:900px){.roadmap-grid{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.roadmap-grid{grid-template-columns:1fr;}}
+.roadmap-card{
+  background:var(--white); border-radius:14px; padding:26px 22px; box-shadow:0 10px 26px -14px rgba(46,5,5,.25);
+  border:1px solid #f1e4d0; position:relative;
+}
+.roadmap-card .stage-num{
+  width:38px; height:38px; border-radius:50%; background:var(--red-950); color:var(--gold);
+  display:flex; align-items:center; justify-content:center; font-weight:900; margin-bottom:14px; font-size:.92rem;
+}
+.roadmap-card .stage-icon{font-size:1.3rem; position:absolute; top:26px; right:24px;}
+.roadmap-card h4{font-size:1rem; color:var(--red-950); margin-bottom:8px;}
+.roadmap-card p{font-size:.85rem; color:var(--ink-soft); margin-bottom:12px;}
+.roadmap-card .deliverables{list-style:none; margin:0; padding-top:10px; border-top:1px solid #f1e4d0;}
+.roadmap-card .deliverables li{
+  font-size:.78rem; color:var(--ink-soft); padding:4px 0 4px 18px; position:relative;
+}
+.roadmap-card .deliverables li::before{content:"•"; position:absolute; left:2px; color:var(--gold-2); font-weight:900;}
+.roadmap-card .deliverables .d-label{
+  font-size:.68rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-2);
+  display:block; padding-left:18px; margin-bottom:2px;
+}
+
+/* ---------- Service / pricing options ---------- */
+.pricing-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:stretch;}
+@media (max-width:900px){.pricing-grid{grid-template-columns:1fr;}}
+.pricing-card{
+  background:var(--red-900); border-radius:16px; padding:30px 26px; border:1px solid rgba(240,166,58,.25);
+  display:flex; flex-direction:column; position:relative;
+}
+.pricing-card.recommended{border-color:var(--gold); box-shadow:0 0 0 2px var(--gold);}
+.pricing-card .rec-badge{
+  position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:var(--gold); color:var(--red-950);
+  font-size:.68rem; font-weight:900; letter-spacing:.05em; text-transform:uppercase; padding:5px 14px; border-radius:20px;
+}
+.pricing-card .opt-label{
+  text-align:center; color:var(--gold); font-weight:800; font-size:.78rem; letter-spacing:.05em; text-transform:uppercase;
+  margin-bottom:16px;
+}
+.pricing-card .amount-inr{font-size:1.5rem; font-weight:900; color:var(--white); text-align:center;}
+.pricing-card .amount-usd{font-size:.92rem; font-weight:700; color:rgba(255,255,255,.7); text-align:center; margin-bottom:4px;}
+.pricing-card .amount-period{font-size:.72rem; color:rgba(255,255,255,.55); text-align:center; margin-bottom:18px;}
+.pricing-card .best-for{font-size:.84rem; color:rgba(255,255,255,.85); margin-bottom:12px;}
+.pricing-card .best-for strong{color:var(--gold);}
+.pricing-card ul{list-style:none; margin:0; padding:0; flex-grow:1;}
+.pricing-card ul li{
+  font-size:.82rem; color:rgba(255,255,255,.78); padding:6px 0 6px 22px; position:relative;
+  border-top:1px solid rgba(240,166,58,.15);
+}
+.pricing-card ul li:first-child{border-top:none;}
+.pricing-card ul li::before{content:"✓"; position:absolute; left:0; color:var(--green); font-weight:900;}
+.pricing-note{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:36px; max-width:1000px; margin-left:auto; margin-right:auto;
+}
+@media (max-width:900px){.pricing-note{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.pricing-note{grid-template-columns:1fr;}}
+.pricing-note .note-item{font-size:.76rem; color:rgba(255,255,255,.6); text-align:center; line-height:1.5;}
+
 /* ---------- Trust strip ---------- */
 .trust-strip{
   display:grid; grid-template-columns:repeat(5,1fr); gap:20px; text-align:center;
@@ -440,6 +500,22 @@ h3{font-size:1.25rem;}
   .wa-float span{font-size:.78rem;}
 }
 
+/* ---------- Sticky mobile CTA bar (sitewide, injected via main.js, mobile only) ---------- */
+.sticky-cta-bar{display:none;}
+@media (max-width:700px){
+  .sticky-cta-bar{
+    display:flex; position:fixed; left:0; right:0; bottom:0; z-index:998;
+    background:var(--red-950); padding:10px 14px; border-top:2px solid var(--gold);
+    box-shadow:0 -6px 20px rgba(0,0,0,.28);
+  }
+  .sticky-cta-bar a{flex:1; text-align:center; justify-content:center; padding:12px 10px; font-size:.85rem;}
+  body{padding-bottom:66px;}
+  /* Nudge the round floating buttons up so the sticky bar doesn't cover them */
+  .wa-float{bottom:82px !important;}
+  .ask7am-float{bottom:140px !important;}
+  .ask7am-panel{bottom:202px !important;}
+}
+
 /* ---------- Cookie consent banner (sitewide, injected via main.js) ---------- */
 .cookie-banner{
   position:fixed; left:0; right:0; bottom:0; z-index:1001;
@@ -571,6 +647,36 @@ h3{font-size:1.25rem;}
 .icon-linkedin svg{color:#0A66C2;}
 .icon-youtube svg{color:#FF0000;}
 .icon-email svg{color:var(--gold-2);}
+
+/* ---------- Book a Demo / Free Consultation modal (sitewide, injected via main.js) ---------- */
+.demo-cta-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:14px;}
+.demo-cta-row .btn{padding:11px 22px; font-size:.85rem;}
+body.booking-modal-lock{overflow:hidden;}
+.booking-modal-overlay{
+  position:fixed; inset:0; z-index:2000; background:rgba(20,6,6,.6);
+  display:flex; align-items:center; justify-content:center; padding:20px;
+  opacity:0; pointer-events:none; transition:opacity .2s ease;
+}
+.booking-modal-overlay.open{opacity:1; pointer-events:auto;}
+.booking-modal{
+  background:#fff; border-radius:18px; max-width:560px; width:100%; max-height:90vh; overflow-y:auto;
+  padding:36px 32px; position:relative; box-shadow:0 30px 80px rgba(0,0,0,.4);
+  transform:translateY(16px) scale(.98); transition:transform .2s ease;
+}
+.booking-modal-overlay.open .booking-modal{transform:translateY(0) scale(1);}
+.booking-modal-close{
+  position:absolute; top:16px; right:16px; background:none; border:none; font-size:1.6rem;
+  line-height:1; color:var(--ink-soft); cursor:pointer; padding:4px 8px;
+}
+.booking-modal-head{text-align:center; margin-bottom:22px;}
+.booking-modal-head h3{font-size:1.35rem; color:var(--red-950); margin-top:8px;}
+.booking-modal-head p{font-size:.88rem; color:var(--ink-soft); margin-top:8px;}
+.booking-modal select{
+  width:100%; padding:13px 16px; border-radius:10px; border:1px solid #e3d2ae; font-size:.92rem;
+  font-family:inherit; background:#fdfaf3; color:var(--ink); appearance:auto;
+}
+.booking-modal select:focus{outline:none; border-color:var(--gold-2);}
+@media (max-width:600px){ .booking-modal{padding:28px 22px;} }
 
 /* ---------- Ask7AM chat widget (sitewide, injected via main.js) ---------- */
 .ask7am-float{
