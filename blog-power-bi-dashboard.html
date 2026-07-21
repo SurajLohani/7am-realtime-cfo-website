@@ -66,6 +66,13 @@
       <span class="eyebrow">Case Study</span>
       <h1 style="font-size:clamp(1.8rem,4vw,2.6rem);">The Dashboard That Ended Three Weeks of Email Chains</h1>
       <div style="color:var(--ink-soft); font-size:.85rem; margin-top:10px;">Suraj Kumar Lohani &middot; 5 min read</div>
+      <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-start;">
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">Excel</span>
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">Power BI</span>
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">Python</span>
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">SQL</span>
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">n8n</span>
+      </div>
     </div>
   </div>
 </section>
@@ -78,7 +85,7 @@
 <h2>What was actually happening</h2>
 <p>Each regional entity was its own silo — its own currency, its own chart of accounts formatting, its own way of exporting from its local system. None of that was wrong on its own. But nobody had ever built a single model that could absorb all three differences and normalize them automatically. So every month, a person did it by hand, in Excel, entity by entity, and every month a slightly different set of manual judgment calls crept in.</p>
 <h2>What replaced it</h2>
-<p>The fix wasn't one tool — it was three, each doing the part it's actually good at. A scripted data pipeline pulled and normalized each entity's export automatically, so currency and format differences were handled the same way every time, not re-decided every month. That normalized data fed a Power BI model built around inter-company eliminations from the start, not bolted on afterward. And a scheduled workflow triggered the whole pipeline on its own, so nobody had to remember to kick it off.</p>
+<p>The fix wasn't one tool — it was three, each doing the part it's actually good at. A Python data pipeline pulled and normalized each entity's export automatically, so currency and format differences were handled the same way every time, not re-decided every month. That normalized data fed a Power BI model built around inter-company eliminations from the start, not bolted on afterward. And an n8n workflow triggered the whole pipeline on its own, so nobody had to remember to kick it off.</p>
 <div class="reveal" style="max-width:720px; margin:24px auto;">
   <div class="dual-card" style="border-top-color:var(--gold-2);">
     <span class="tag">🇸🇬 Singapore</span>
@@ -92,7 +99,7 @@
   </div>
 </div>
 <h2>Why the dashboard was the easy part</h2>
-<p>Most people assume the dashboard is the hard part of a project like this. It isn't. The hard part is everything upstream of the dashboard — the discipline of getting five different data sources to agree on what "clean" means before a single visual ever gets built. A dashboard built on top of a shaky model just shows the mess faster and in higher resolution. A dashboard built on top of a properly normalized pipeline shows the truth, live, to everyone who needs it, without anyone re-explaining the gaps every month-end.</p>
+<p>Most people assume the dashboard is the hard part of a project like this. It isn't. The hard part is everything upstream of the Power BI dashboard — the discipline of getting five different data sources to agree on what "clean" means before a single visual ever gets built. A dashboard built on top of a shaky model just shows the mess faster and in higher resolution. A dashboard built on top of a properly normalized Python pipeline shows the truth, live, to everyone who needs it, without anyone re-explaining the gaps every month-end.</p>
 <blockquote>A live dashboard doesn't fix bad data. It just makes bad data impossible to hide — which is exactly why the data has to be fixed first.</blockquote>
 <p>SGD 280,000 in discrepancies got resolved once the normalization was automated instead of manual. But the number that mattered more to the finance team was the other one: 21 days down to 5. That's most of a month-end cycle given back to actual analysis instead of data wrangling.</p>
 

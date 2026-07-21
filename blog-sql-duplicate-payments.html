@@ -66,6 +66,12 @@
       <span class="eyebrow">Methodology</span>
       <h1 style="font-size:clamp(1.8rem,4vw,2.6rem);">The SQL Query That Catches Duplicate Payments Before They Leave the Bank</h1>
       <div style="color:var(--ink-soft); font-size:.85rem; margin-top:10px;">Suraj Kumar Lohani &middot; 4 min read</div>
+      <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-start;">
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">Excel</span>
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">SQL</span>
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">Power BI</span>
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">Python</span>
+      </div>
     </div>
   </div>
 </section>
@@ -78,7 +84,7 @@
 <h2>Why this needs a database, not a spreadsheet</h2>
 <p>A single entity can sometimes get away with checking for duplicate payments in Excel — cross-referencing a payment register against itself isn't hard at a few hundred rows. It falls apart the moment there's more than one entity, more than one bank account, and vendors who get paid from different legal entities against the same underlying invoice. That's a join across tables, not a lookup within one sheet — which is exactly the kind of question SQL is built to answer and Excel isn't.</p>
 <h2>The logic, in plain language</h2>
-<p>The query groups payments by vendor, invoice number and amount, then flags any group where more than one payment record exists within a defined window — say, thirty days — across any entity, not just within one. It doesn't matter whether the duplicate happened because two people in two entities both saw an open invoice, or because a vendor sent the same invoice twice with a different reference number. If the vendor, the amount and the timing line up, it gets flagged for a human to look at before the payment goes out, not after.</p>
+<p>The SQL query groups payments by vendor, invoice number and amount, then flags any group where more than one payment record exists within a defined window — say, thirty days — across any entity, not just within one. It doesn't matter whether the duplicate happened because two people in two entities both saw an open invoice, or because a vendor sent the same invoice twice with a different reference number. If the vendor, the amount and the timing line up, it gets flagged for a human to look at before the payment goes out, not after.</p>
 <div class="reveal" style="max-width:720px; margin:16px auto;">
   <div class="dual-card" style="border-top-color:var(--gold-2);">
     <span class="tag">Common Pattern · Multi-Entity</span>
@@ -94,7 +100,7 @@
 <h2>Where the real saving is</h2>
 <p>The saving isn't just the duplicate payment itself, though that's real money. It's the time nobody spends chasing a vendor to return an overpayment, the awkwardness avoided in that vendor relationship, and — more quietly — the fact that a working duplicate-payment check tends to make everyone processing payments a little more careful, because they know something is checking. That last part doesn't show up in any single number, but it's often the bigger effect over a year.</p>
 <blockquote>The best fraud and error controls aren't the ones that catch the most incidents. They're the ones that mean fewer incidents happen in the first place, because everyone knows the check exists.</blockquote>
-<p>This is one query out of a much longer list — ageing buckets, month-over-month variance, GST reconciliation — all written once as reusable logic against a standard chart of accounts, so a finance team stops re-solving the same problem every single cycle.</p>
+<p>This is one SQL query out of a much longer list — ageing buckets, month-over-month variance, GST reconciliation — all written once as reusable logic against a standard chart of accounts, so a finance team stops re-solving the same problem every single cycle.</p>
 
     </div>
     <div style="margin-top:50px; padding:30px; background:var(--cream); border-radius:var(--radius); text-align:center;">

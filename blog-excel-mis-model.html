@@ -66,6 +66,13 @@
       <span class="eyebrow">Methodology</span>
       <h1 style="font-size:clamp(1.8rem,4vw,2.6rem);">From Trial Balance to MIS in Minutes</h1>
       <div style="color:var(--ink-soft); font-size:.85rem; margin-top:10px;">Suraj Kumar Lohani &middot; 4 min read</div>
+      <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-start;">
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">Excel</span>
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">Power Query</span>
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">Power BI</span>
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">Python</span>
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">Claude AI</span>
+      </div>
     </div>
   </div>
 </section>
@@ -73,13 +80,13 @@
   <div class="container" style="max-width:760px;">
     <div class="reveal blog-post-body">
 
-<p>If there's one task that sits underneath almost every engagement in this practice, it's this one: a raw trial balance comes out of Tally or an ERP, and somebody needs a clean management summary from it — today, not after three days of manual formatting.</p>
+<p>If there's one task that sits underneath almost every engagement in this practice, it's this one: a raw trial balance comes out of Tally or an ERP, and somebody needs a clean, Excel-built management summary from it — today, not after three days of manual formatting.</p>
 <p>It sounds simple. It rarely is. A raw export is built for the accounting system, not for a founder trying to understand their business in two minutes. Account codes instead of category names. Sub-ledgers that need to be grouped. Numbers that need context — this month against last month, this year against budget — none of which exists in the export itself.</p>
 <h2>The model, not the magic</h2>
-<p>There's no trick here, which is the point. The model that turns a trial balance into an MIS is built once, correctly, and then reused every cycle without being rebuilt from scratch. A mapping table connects raw account codes to management categories. A set of formulas — not hardcoded values — pulls, groups and compares automatically the moment new data lands. The structure does the same job every month, so the only thing that changes is the numbers, never the logic.</p>
+<p>There's no trick here, which is the point. The Excel model that turns a trial balance into an MIS is built once, correctly, and then reused every cycle without being rebuilt from scratch. A Power Query mapping table connects raw account codes to management categories. A set of Excel formulas — not hardcoded values — pulls, groups and compares automatically the moment new data lands. The structure does the same job every month, so the only thing that changes is the numbers, never the logic.</p>
 <p>This is the same discipline that shows up everywhere else on this site, just at its most basic layer: build the structure once, verify it once, and let it run without re-deciding the logic every time. A Power BI dashboard is this same idea with more people watching it live. A Python script is this same idea at a scale no spreadsheet can hold. It all starts here.</p>
 <h2>Where it breaks</h2>
-<p>Almost every broken MIS process breaks for the same reason: someone edited a formula by hand mid-cycle to "just fix this one number," and that fix never made it back into the template. Six months later, three versions of the same model exist, and nobody fully trusts any of them. The fix isn't more discipline from the person doing the work — it's a model built so that fixing something means fixing the template once, not the output every time.</p>
+<p>Almost every broken MIS process breaks for the same reason: someone edited an Excel formula by hand mid-cycle to "just fix this one number," and that fix never made it back into the template. Six months later, three versions of the same model exist, and nobody fully trusts any of them. The fix isn't more discipline from the person doing the work — it's a model built so that fixing something means fixing the template once, not the output every time.</p>
 <blockquote>An MIS model isn't valuable because it's clever. It's valuable because it produces the same right answer in the same amount of time, every single cycle, without anyone re-earning that trust from scratch.</blockquote>
 <p>Claude for Excel now speeds up the mechanical part of this — tracing a broken formula, rebuilding a mapping table, catching a #REF! before it reaches a report — but the underlying model still has to be built with the same discipline it always needed. The tool changed. The requirement that the structure be right before anyone trusts the number didn't.</p>
 

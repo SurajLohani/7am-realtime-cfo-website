@@ -66,6 +66,12 @@
       <span class="eyebrow">Case Study</span>
       <h1 style="font-size:clamp(1.8rem,4vw,2.6rem);">₹37 Lakhs: What a Python Script Found That No Human Would</h1>
       <div style="color:var(--ink-soft); font-size:.85rem; margin-top:10px;">Suraj Kumar Lohani &middot; 5 min read</div>
+      <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-start;">
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">Excel</span>
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">Python</span>
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">SQL</span>
+        <span style="background:rgba(240,166,58,.14); border:1px solid rgba(240,166,58,.4); color:#7a2e18; font-weight:700; font-size:.78rem; padding:5px 12px; border-radius:20px;">Power BI</span>
+      </div>
     </div>
   </div>
 </section>
@@ -76,7 +82,7 @@
 <p>An e-commerce business selling across a major marketplace had a returns problem. Not an unusual one on the surface — every marketplace seller deals with returns — but this one had a shape to it that nobody had ever looked closely enough to see.</p>
 <p>The finance team had reviewed the returns numbers every month for years. They looked reasonable. A few percent of sales, roughly in line with the category average. Nothing that would make anyone stop and ask a harder question — because nobody was looking at three years of transactions at once, row by row, the way a script can.</p>
 <h2>Why a spreadsheet couldn't catch it</h2>
-<p>A human reviewing monthly returns data sees one month at a time, and one month at a time, the pattern looks like noise. It's only when you line up thirty-six months side by side, at the SKU and order level, that a very specific, very repeatable pattern shows up — the kind of pattern a person would only notice if they had the patience to check every single row against every other row, without getting tired around row 30,000. No human has that patience. A script does.</p>
+<p>A human reviewing monthly returns data in Excel sees one month at a time, and one month at a time, the pattern looks like noise. It's only when you line up thirty-six months side by side, at the SKU and order level, that a very specific, very repeatable pattern shows up — the kind of pattern a person would only notice if they had the patience to check every single row against every other row, without getting tired around row 30,000. No human has that patience. A script does.</p>
 <h2>What the script actually did</h2>
 <p>Three years of transaction history were pulled directly from the marketplace via API using Python, instead of relying on manual monthly exports that vary in format and completeness. The script then ran the same pattern-detection logic used across the Last Layer Approach™ — checking returns against order value, return frequency by handler, and timing patterns that a coincidence wouldn't produce but a repeated manual process would. The results were pushed into Power BI so the pattern was visible, not just statistically implied.</p>
 <div class="reveal" style="max-width:720px; margin:24px auto;">
