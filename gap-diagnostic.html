@@ -37,6 +37,9 @@
         <li class="mobile-only-link"><a href="diagnostic.html" style="color:var(--gold);">Free Diagnostic →</a></li>
         <li><a href="index.html">Home</a></li>
         <li><a href="excel.html" style="color:var(--gold);">Excel Resources</a></li>
+        <li><a href="power-bi.html">Power BI</a></li>
+        <li><a href="python-sql.html">Python &amp; SQL</a></li>
+        <li><a href="automation.html">Automation</a></li>
         <li><a href="mission.html">Mission &amp; Scope</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="services.html">Services</a></li>
@@ -223,7 +226,7 @@
       </div>
       <div class="submit-row">
         <button type="submit" class="btn btn-primary">Request My Free 5-Gap Report →</button>
-        <p class="lead-note" id="gapStatus">We reply within 3 business days. Prefer WhatsApp? DM "MORNING" to +91-7011283542.</p>
+        <p class="lead-note" id="gapStatus">We reply within 3 business days. Prefer WhatsApp? DM "DEMO" to +91-7011283542.</p>
       </div>
     </form>
   </div>
@@ -252,6 +255,9 @@
         <h5>Explore</h5>
         <ul>
           <li><a href="excel.html">Excel Resources</a></li>
+          <li><a href="power-bi.html">Power BI</a></li>
+          <li><a href="python-sql.html">Python &amp; SQL</a></li>
+          <li><a href="automation.html">Automation</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="books.html">Books</a></li>
           <li><a href="tools.html">Tools</a></li>
@@ -303,7 +309,7 @@ function submitGapForm(ev){
   submitLead('GapDiagnostic', fields);
   document.getElementById('gapForm').querySelectorAll('input,select,textarea,button').forEach(function(el){ el.disabled = true; });
   document.getElementById('gapForm').querySelector('button').textContent = 'Sent ✓';
-  document.getElementById('gapStatus').textContent = '✅ Got it — we\'ll review your numbers and send your personalized 5-Gap Financial Diagnostic Report within 3 business days. Prefer WhatsApp? DM "MORNING" to +91-7011283542.';
+  document.getElementById('gapStatus').textContent = '✅ Got it — we\'ll review your numbers and send your personalized 5-Gap Financial Diagnostic Report within 3 business days. Prefer WhatsApp? DM "DEMO" to +91-7011283542.';
   return false;
 }
 </script>
