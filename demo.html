@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Demo — See 7AM &amp; Realtime CFO™ Work | 7AM &amp; Realtime CFO™</title>
+<meta name="description" content="Walk through all 9 stages live — from scattered Tally exports and bank statements to the final One Page News — using a demo company. See exactly how Excel, Power Query, Python, SQL, Claude and Power BI turn messy data into daily clarity.">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="canonical" href="https://7amandrealtimecfo.com/demo.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="7AM & Realtime CFO™">
+<meta property="og:title" content="Live Demo — See 7AM & Realtime CFO™ Work">
+<meta property="og:description" content="Walk through all 9 stages live — from scattered data to the final One Page News — using a demo company. Excel, Power Query, Python, SQL, Claude, Power BI, all in one flow.">
+<meta property="og:url" content="https://7amandrealtimecfo.com/demo.html">
+<meta property="og:image" content="https://7amandrealtimecfo.com/assets/img/og-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Live Demo — See 7AM & Realtime CFO™ Work">
+<meta name="twitter:description" content="Walk through all 9 stages live — from scattered data to the final One Page News — using a demo company. Excel, Power Query, Python, SQL, Claude, Power BI, all in one flow.">
+<meta name="twitter:image" content="https://7amandrealtimecfo.com/assets/img/og-share.jpg">
+
+<style>
+  /* ---------- Demo Walkthrough — reuses the site's Deep Red + Gold system ---------- */
+  .demo-strip{
+    display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;
+  }
+  .demo-chip{
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.22);
+    border-radius:999px; padding:7px 16px; font-size:.78rem; color:rgba(255,255,255,.85);
+  }
+  .demo-chip b{color:var(--gold-light); font-weight:700;}
+
+  .demo-shell{
+    display:grid; grid-template-columns:280px 1fr; gap:24px; align-items:start;
+  }
+  @media (max-width:880px){ .demo-shell{grid-template-columns:1fr;} }
+
+  .demo-rail{display:flex; flex-direction:column; gap:4px;}
+  .demo-rail-item{
+    display:flex; align-items:flex-start; gap:12px; padding:11px 12px; border-radius:10px;
+    cursor:pointer; border:1px solid transparent; background:transparent; text-align:left;
+    width:100%; font-family:inherit; color:var(--ink);
+  }
+  .demo-rail-item:hover{background:#fff;}
+  .demo-rail-item.active{background:#fff; border-color:#f1e4d0; box-shadow:0 10px 26px -14px rgba(46,5,5,.25);}
+  .demo-rail-num{
+    flex:none; width:26px; height:26px; border-radius:50%; background:#f1e4d0; color:var(--ink-soft);
+    display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:700;
+    font-family:'IBM Plex Mono',monospace;
+  }
+  .demo-rail-item.active .demo-rail-num{background:var(--gold-2); color:#fff;}
+  .demo-rail-item.done .demo-rail-num{background:var(--green); color:#fff;}
+  .demo-rail-body{flex:1; min-width:0;}
+  .demo-rail-title{font-size:.86rem; font-weight:700; line-height:1.3; color:var(--red-950);}
+  .demo-rail-tool{font-size:.7rem; color:var(--ink-soft); margin-top:2px;}
+  .demo-rail-final{margin-top:10px; padding-top:10px; border-top:1px dashed #f1e4d0;}
+
+  .demo-panel{
+    background:#fff; border:1px solid #f1e4d0; border-radius:var(--radius); box-shadow:var(--shadow);
+    padding:30px 32px 28px; min-height:460px; display:flex; flex-direction:column;
+  }
+  .demo-panel-head{display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:6px;}
+  .demo-panel-eyebrow{font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-2); font-weight:800; margin-bottom:4px;}
+  .demo-panel-title{font-size:1.4rem; margin:0; color:var(--red-950); text-wrap:balance;}
+  .demo-tool-tags{display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end;}
+  .demo-tool-tag{font-size:.68rem; font-weight:700; padding:4px 10px; border-radius:999px; background:var(--red-950); color:#fff; white-space:nowrap;}
+  .demo-panel-desc{color:var(--ink-soft); font-size:.93rem; max-width:70ch; margin:8px 0 20px;}
+  .demo-panel-content{flex:1;}
+
+  .demo-data-block{background:var(--cream); border:1px solid #f1e4d0; border-radius:12px; padding:16px 18px; margin-bottom:14px;}
+  .demo-data-block h4{margin:0 0 10px; font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft);}
+  .demo-messy-line{font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:var(--ink-soft); padding:4px 0; border-bottom:1px dashed #e9dcc4; white-space:pre; overflow-x:auto;}
+  .demo-messy-line:last-child{border-bottom:none;}
+
+  table.demo-mini{width:100%; border-collapse:collapse; font-size:.83rem;}
+  table.demo-mini th{text-align:left; font-size:.68rem; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); padding:5px 8px; border-bottom:1px solid #f1e4d0;}
+  table.demo-mini td{padding:7px 8px; border-bottom:1px solid #f1e4d0; font-family:'IBM Plex Mono',monospace;}
+  table.demo-mini td.demo-status-ok{color:var(--green); font-weight:700;}
+  table.demo-mini td.demo-status-warn{color:var(--amber); font-weight:700;}
+  table.demo-mini td.demo-status-bad{color:var(--red-600); font-weight:700;}
+
+  .demo-insight-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px;}
+  .demo-insight-list li{display:flex; gap:10px; align-items:flex-start; font-size:.9rem; line-height:1.55; color:var(--ink);}
+  .demo-insight-dot{flex:none; width:8px; height:8px; border-radius:50%; margin-top:7px; background:var(--gold-2);}
+  .demo-insight-dot.warn{background:var(--red-600);}
+  .demo-insight-dot.good{background:var(--green);}
+
+  .demo-confidence-meter{display:flex; align-items:center; gap:10px; font-size:.82rem; color:var(--ink-soft); margin-top:16px;}
+  .demo-confidence-track{flex:1; height:6px; background:#f1e4d0; border-radius:99px; overflow:hidden;}
+  .demo-confidence-fill{height:100%; background:var(--gold-2); border-radius:99px;}
+
+  .demo-chat-bubble{background:#fdf6ea; border:1px solid #f1e0bf; border-radius:14px; padding:13px 16px; max-width:400px; font-size:.86rem; margin-bottom:12px; color:var(--ink);}
+  .demo-chat-from{font-weight:700; font-size:.72rem; color:var(--ink-soft); margin-bottom:4px;}
+  .demo-chat-cmd{font-family:'IBM Plex Mono',monospace; background:var(--red-950); color:#fff; padding:9px 14px; border-radius:8px; display:inline-block; font-size:.85rem; margin:10px 0;}
+
+  .demo-checklist{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px;}
+  .demo-checklist li{display:flex; align-items:center; gap:10px; font-size:.87rem; color:var(--ink);}
+  .demo-checklist li::before{content:"✓"; flex:none; width:20px; height:20px; border-radius:6px; background:rgba(63,174,106,.15); color:var(--green); font-size:.72rem; font-weight:800; display:flex; align-items:center; justify-content:center;}
+
+  .demo-launch-banner{background:linear-gradient(135deg,var(--red-950),var(--red-800)); color:#fff; border-radius:14px; padding:22px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:18px;}
+  .demo-launch-banner .lb-title{font-weight:800; font-size:1.1rem;}
+  .demo-launch-banner .lb-sub{font-size:.8rem; color:rgba(255,255,255,.72); margin-top:3px;}
+  .demo-launch-badge{background:var(--gold-2); color:#fff; font-size:.72rem; font-weight:800; padding:6px 14px; border-radius:999px; letter-spacing:.04em;}
+
+  .demo-controls{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:24px; padding-top:20px; border-top:1px solid #f1e4d0;}
+  .demo-progress-dots{display:flex; gap:5px;}
+  .demo-pd{width:6px; height:6px; border-radius:50%; background:#f1e4d0;}
+  .demo-pd.on{background:var(--gold-2);}
+
+  .demo-opn-card{background:#fff; border:1px solid #f1e4d0; border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;}
+  .demo-opn-head{background:var(--red-950); color:#fff; padding:20px 26px; display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap;}
+  .demo-opn-head h3{font-size:1.2rem; margin:0; color:#fff;}
+  .demo-opn-head .demo-opn-meta{font-size:.76rem; color:rgba(255,255,255,.65); margin-top:4px;}
+  .demo-opn-conf{text-align:right; font-size:.76rem; color:rgba(255,255,255,.65);}
+  .demo-opn-conf b{color:var(--gold-light); font-size:1.15rem; font-family:'IBM Plex Mono',monospace;}
+  .demo-opn-grid{display:grid; grid-template-columns:repeat(3,1fr);}
+  @media (max-width:700px){ .demo-opn-grid{grid-template-columns:1fr;} }
+  .demo-opn-tile{padding:20px 24px; border-right:1px solid #f1e4d0; border-bottom:1px solid #f1e4d0;}
+  .demo-opn-tile:nth-child(3n){border-right:none;}
+  .demo-opn-tile-label{font-size:.7rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); font-weight:700; margin-bottom:6px;}
+  .demo-opn-tile-value{font-family:'IBM Plex Mono',monospace; font-size:1.35rem; font-weight:700; color:var(--red-950);}
+  .demo-opn-tile-value.bad{color:var(--red-600);}
+  .demo-opn-tile-value.warn{color:var(--amber);}
+  .demo-opn-tile-value.good{color:var(--green);}
+  .demo-opn-tile-note{font-size:.79rem; color:var(--ink-soft); margin-top:5px; line-height:1.45;}
+  .demo-opn-decisions{padding:22px 26px; background:var(--cream);}
+  .demo-opn-decisions h4{font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); margin:0 0 12px;}
+  .demo-opn-decisions ol{margin:0; padding-left:20px; font-size:.9rem; line-height:1.75; color:var(--ink);}
+  .demo-watermark{text-align:center; font-size:.72rem; color:var(--ink-soft); letter-spacing:.05em; text-transform:uppercase; padding:14px; border-top:1px dashed #f1e4d0;}
+  .demo-num{font-variant-numeric:tabular-nums; font-family:'IBM Plex Mono',monospace;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a href="index.html" class="brand"><img src="assets/img/logo-nav.png" alt="7AM & Realtime CFO™"></a>
+    <nav>
+      <ul class="nav-links">
+        <li class="mobile-only-link"><a href="diagnostic.html" style="color:var(--gold);">Free Diagnostic →</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="demo.html" class="active" style="color:var(--gold);">Live Demo</a></li>
+        <li><a href="excel.html" style="color:var(--gold);">Excel Resources</a></li>
+        <li><a href="mission.html">Mission &amp; Scope</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="templates.html">Templates</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a href="diagnostic.html" class="btn btn-primary" style="padding:11px 20px; font-size:.85rem;">Free Diagnostic</a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= PAGE HERO ================= -->
+<section class="hero" style="min-height:40vh; padding:150px 0 40px;">
+  <div class="hero-video-wrap">
+    <img src="assets/img/hero-poster.jpg" alt="">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <span class="eyebrow">Live Walkthrough · Demo Company · No Client Data</span>
+    <h1>Scattered Data <span class="gold-text">→</span> Finance OS<span class="gold-text">™</span> <span class="gold-text">→</span> One Page News.</h1>
+    <p class="lede">Nine stages, real tools at each step — Excel, Power Query, ERP, Python, SQL, Claude, Power BI, WhatsApp — walked through end to end on a demo company, exactly how your own mornings would run.</p>
+    <div class="demo-strip">
+      <span class="demo-chip"><b>Suraj Kumar Lohani Foods Pvt. Ltd. (DEMO)</b> · Rajasthan, India</span>
+      <span class="demo-chip">Data Confidence <b>87%</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEMO WALKTHROUGH ================= -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="demo-shell">
+      <nav class="demo-rail" id="rail"></nav>
+      <section class="demo-panel" id="panel"></section>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand"><img src="assets/img/logo-nav.png" alt="7AM & Realtime CFO™"></a>
+        <p>Your CFO in your pocket. One Page. Anytime. Anywhere. Daily Financial Clarity and Visibility from Scattered Data.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="demo.html">Live Demo</a></li>
+          <li><a href="excel.html">Excel Resources</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="books.html">Books</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="https://wa.me/917011283542" target="_blank">WhatsApp</a></li>
+          <li><a href="https://linkedin.com/in/surajkumarlohani" target="_blank">LinkedIn — Suraj</a></li>
+          <li><a href="https://www.linkedin.com/in/shikhakutariyar" target="_blank">LinkedIn — Shikha</a></li>
+          <li><a href="https://www.youtube.com/@surajkumarlohani" target="_blank">YouTube</a></li>
+          <li><a href="mailto:surajkumarlohani@gmail.com">Email</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Get Started</h5>
+        <ul>
+          <li><a href="diagnostic.html">Free Diagnostic</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 7AM &amp; Realtime CFO™. All rights reserved.</span>
+      <span>Ghaziabad, Delhi NCR, India</span>
+    </div>
+    <div class="footer-legal"><a href="privacy-policy.html">Privacy Policy</a>&middot;<a href="terms.html">Terms &amp; Conditions</a>&middot;<a href="faq.html">FAQ</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var STAGES = [
+    {
+      tools:["Excel","Power Query"],
+      title:"Discovery & Analysis",
+      eyebrow:"Stage 1 of 9",
+      desc:"Before any automation runs, the mess is mapped: every place this company's numbers actually live, and how far apart they are from each other.",
+      render:function(){
+        return dataBlock("Data sources found scattered across the business", [
+          "tally_export_Aug26.xlsx        — accounting ledger, 3 branches, 3 formats",
+          "HDFC_current_ac_statement.pdf  — bank statement, manual re-typed monthly",
+          "inventory_register_v4_FINAL.xlsx — kept by 2 people, dates don't match",
+          "plant_manager_whatsapp.txt     — daily production numbers, no template"
+        ]) + insightList([
+          {t:"good", text:"4 disconnected sources identified — none of them talk to each other today."},
+          {t:"warn", text:"Inventory register alone has 2 conflicting versions in the same week."}
+        ]);
+      }
+    },
+    {
+      tools:["n8n","Power Automate"],
+      title:"System Configuration",
+      eyebrow:"Stage 2 of 9",
+      desc:"The automation engine is configured once — validation rules, thresholds and monitoring — so every morning after this runs without anyone touching it.",
+      render:function(){
+        return dataBlock("Validation rules configured", [
+          "IF opening_balance != prior_closing_balance   → FLAG reconciliation",
+          "IF inventory_age > 90 days                    → FLAG ageing risk",
+          "IF job_work_yield < standard - 3%              → FLAG leakage",
+          "IF cash_movement <> book_profit by > 15%        → FLAG cash-vs-profit gap"
+        ]) + insightList([
+          {t:"good", text:"4 monitoring rules configured — this is what runs quietly every single day."}
+        ]);
+      }
+    },
+    {
+      tools:["ERP","API"],
+      title:"Accounting Integration",
+      eyebrow:"Stage 3 of 9",
+      desc:"Raw ledger lines are pulled directly from the accounting system — exactly as messy as they are on any real day.",
+      render:function(){
+        return "<table class='demo-mini'><thead><tr><th>Date</th><th>Voucher</th><th>Head</th><th>Amount (₹)</th><th>Note</th></tr></thead><tbody>"+
+          row("03 Aug","JV-1182","Job Work Charges","1,84,300","yield below standard")+
+          row("06 Aug","BRS-091","Bank Charges","—","no narration")+
+          row("09 Aug","PUR-2214","Raw Material — Cardamom","6,41,200","")+
+          row("14 Aug","SAL-3305","Sales Return","2,12,000","reason not tagged")+
+          row("19 Aug","JV-1190","Scrap Adjustment","38,600","unverified")+
+          "</tbody></table>"+
+          insightList([{t:"warn", text:"3 of 5 lines pulled this week are missing the narration finance actually needs."}]);
+      }
+    },
+    {
+      tools:["Python","SQL"],
+      title:"Reporting & Extraction",
+      eyebrow:"Stage 4 of 9",
+      desc:"Everything is consolidated into one clean table, and each figure is checked before it's allowed anywhere near a report.",
+      render:function(){
+        return "<table class='demo-mini'><thead><tr><th>Metric</th><th>Value</th><th>Check</th></tr></thead><tbody>"+
+          rawRow("Bank balance (3 accounts)","₹34.2L","<td class='demo-status-ok'>Reconciled</td>")+
+          rawRow("Book profit — August (MTD)","₹18.6L","<td class='demo-status-ok'>Matches ledger</td>")+
+          rawRow("Net cash generated — August (MTD)","₹6.1L","<td class='demo-status-warn'>Gap vs profit</td>")+
+          rawRow("Inventory on hand","₹61.4L","<td class='demo-status-warn'>22% aged &gt;90d</td>")+
+          rawRow("Job-work yield — Unit 2","−4.3% vs standard","<td class='demo-status-bad'>Leakage flag</td>")+
+          "</tbody></table>";
+      }
+    },
+    {
+      tools:["Claude","ChatGPT"],
+      title:"AI Analysis Engine",
+      eyebrow:"Stage 5 of 9 · Data First. AI Second.",
+      desc:"Only after the numbers are verified does AI get involved — turning checked data into plain-language insight, never the other way round.",
+      render:function(){
+        return insightList([
+          {t:"warn", text:"Cash vs Profit gap of ₹12.5L this month — profit is real, but ₹8.1L is sitting in receivables and ₹4.4L in new inventory, not in the bank yet."},
+          {t:"warn", text:"Unit 2 job-work yield has drifted −4.3% for 3 weeks running — worth a physical check before it becomes a pattern."},
+          {t:"good", text:"Cash conversion cycle moved from 41 to 58 days quarter-on-quarter — working capital is the one to watch this month."}
+        ]) + confidenceMeter(87);
+      }
+    },
+    {
+      tools:["Power BI","Excel"],
+      title:"Report Generation",
+      eyebrow:"Stage 6 of 9",
+      desc:"The verified numbers and the AI's plain-language read are assembled into the branded One Page News — the same page every morning, nothing to interpret.",
+      render:function(){
+        return dataBlock("Assembling One Page News", [
+          "[✓] Cash Position tile          — 34.2L, 3 accounts",
+          "[✓] Cash vs Profit tile         — 12.5L gap flagged",
+          "[✓] Variance Flag tile          — Unit 2 yield, -4.3%",
+          "[✓] Inventory tile              — 61.4L, 22% aged",
+          "[✓] Working Capital tile        — CCC 58 days",
+          "[✓] Today's Decisions           — 3 actions drafted",
+          "[ ] Awaiting delivery channel..."
+        ]);
+      }
+    },
+    {
+      tools:["WhatsApp","Email"],
+      title:"Delivery Setup",
+      eyebrow:"Stage 7 of 9",
+      desc:"Two ways to read it — 7AM Automatic lands on its own every morning, or CURRENT gives the same page on command, any time.",
+      render:function(){
+        return "<div class='demo-chat-bubble'><div class='demo-chat-from'>7AM · WhatsApp · 7:00 AM</div>Good morning Suraj. Your One Page News for 20 Aug is ready — Cash vs Profit gap flagged at Unit 2, 3 decisions waiting. 📄</div>"+
+          "<div style='margin:16px 0 8px;font-size:.82rem;color:var(--ink-soft);'>Or ask for it whenever you need it:</div>"+
+          "<span class='demo-chat-cmd'>&gt;&gt; CURRENT</span>"+
+          "<div class='demo-chat-bubble'><div class='demo-chat-from'>7AM · replies in under 10 minutes</div>Same One Page News, generated fresh, right now.</div>";
+      }
+    },
+    {
+      tools:["Power Apps"],
+      title:"Testing & Training",
+      eyebrow:"Stage 8 of 9",
+      desc:"Before anyone relies on it daily, the whole flow is validated end to end and the numbers are signed off against the real books.",
+      render:function(){
+        return "<ul class='demo-checklist'>"+
+          "<li>Cash position cross-checked against all 3 bank statements</li>"+
+          "<li>Inventory ageing verified against physical count sample</li>"+
+          "<li>Delivery tested on WhatsApp, Email and CURRENT command</li>"+
+          "<li>Owner walked through reading the page in under 2 minutes</li>"+
+          "</ul>";
+      }
+    },
+    {
+      tools:["7AM & Realtime CFO™"],
+      title:"Launch & Handover",
+      eyebrow:"Stage 9 of 9",
+      desc:"Go-live. From here it runs on its own, every morning, at 7AM — and on command, any time, with CURRENT.",
+      render:function(){
+        return "<div class='demo-launch-banner'><div><div class='lb-title'>Live — 7AM Automatic is now running for this business</div><div class='lb-sub'>Next One Page News arrives tomorrow 7:00 AM · CURRENT available anytime</div></div><div class='demo-launch-badge'>GO-LIVE</div></div>"+
+          insightList([{t:"good", text:"Handover complete — owner has direct access, no dependency on any one person to read the numbers."}]);
+      }
+    }
+  ];
+
+  var rail = document.getElementById('rail');
+  var panel = document.getElementById('panel');
+  var idx = 0;
+  var FINAL = STAGES.length;
+
+  function dataBlock(label, lines){
+    var html = "<div class='demo-data-block'><h4>"+label+"</h4>";
+    lines.forEach(function(l){ html += "<div class='demo-messy-line'>"+esc(l)+"</div>"; });
+    return html + "</div>";
+  }
+  function row(a,b,c,d,e){ return "<tr><td>"+a+"</td><td>"+b+"</td><td>"+c+"</td><td class='demo-num'>"+d+"</td><td>"+e+"</td></tr>"; }
+  function rawRow(a,b,c){ return "<tr><td>"+a+"</td><td class='demo-num'>"+b+"</td>"+c+"</tr>"; }
+  function insightList(items){
+    var html = "<ul class='demo-insight-list'>";
+    items.forEach(function(i){ html += "<li><span class='demo-insight-dot "+i.t+"'></span><span>"+i.text+"</span></li>"; });
+    return html+"</ul>";
+  }
+  function confidenceMeter(pct){
+    return "<div class='demo-confidence-meter'><span>Data Confidence</span><div class='demo-confidence-track'><div class='demo-confidence-fill' style='width:"+pct+"%'></div></div><span class='demo-num'>"+pct+"%</span></div>";
+  }
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+  function renderRail(){
+    var html = "";
+    STAGES.forEach(function(s, i){
+      var cls = "demo-rail-item" + (i===idx?" active":"") + (i<idx?" done":"");
+      html += "<button class='"+cls+"' data-i='"+i+"'>"+
+        "<span class='demo-rail-num'>"+(i<idx?"✓":(i+1))+"</span>"+
+        "<span class='demo-rail-body'><span class='demo-rail-title'>"+s.title+"</span>"+
+        "<span class='demo-rail-tool'>"+s.tools.join(" + ")+"</span></span>"+
+        "</button>";
+    });
+    html += "<div class='demo-rail-final'>"+
+      "<button class='demo-rail-item"+(idx===FINAL?" active":"")+"' data-i='"+FINAL+"'>"+
+      "<span class='demo-rail-num'>"+(idx===FINAL?"●":"★")+"</span>"+
+      "<span class='demo-rail-body'><span class='demo-rail-title'>One Page News</span>"+
+      "<span class='demo-rail-tool'>Final output</span></span>"+
+      "</button></div>";
+    rail.innerHTML = html;
+    Array.prototype.forEach.call(rail.querySelectorAll('.demo-rail-item'), function(btn){
+      btn.addEventListener('click', function(){ idx = parseInt(btn.getAttribute('data-i'),10); render(); });
+    });
+  }
+
+  function renderPanel(){
+    if(idx === FINAL){ panel.innerHTML = finalOPN(); return; }
+    var s = STAGES[idx];
+    var tagsHtml = s.tools.map(function(t){ return "<span class='demo-tool-tag'>"+t+"</span>"; }).join("");
+    panel.innerHTML =
+      "<div class='demo-panel-head'><div><div class='demo-panel-eyebrow'>"+s.eyebrow+"</div><h3 class='demo-panel-title'>"+s.title+"</h3></div><div class='demo-tool-tags'>"+tagsHtml+"</div></div>"+
+      "<p class='demo-panel-desc'>"+s.desc+"</p>"+
+      "<div class='demo-panel-content'>"+s.render()+"</div>"+
+      controlsHtml();
+    bindControls();
+  }
+
+  function controlsHtml(){
+    var dots = "";
+    for(var i=0;i<=FINAL;i++){ dots += "<span class='demo-pd"+(i===idx?" on":"")+"'></span>"; }
+    return "<div class='demo-controls'>"+
+      "<button class='btn btn-ghost' id='prevBtn'"+(idx===0?" disabled style=\"opacity:.35;\"":"")+" style=\"color:var(--red-950); border:1px solid #f1e4d0; padding:10px 18px; font-size:.85rem;\"> ← Back</button>"+
+      "<div class='demo-progress-dots'>"+dots+"</div>"+
+      "<button class='btn btn-primary' id='nextBtn' style='padding:10px 20px; font-size:.85rem;'>"+(idx===FINAL-1?"View One Page News →":(idx===FINAL?"Restart":"Next Stage →"))+"</button>"+
+      "</div>";
+  }
+
+  function bindControls(){
+    var prev = document.getElementById('prevBtn');
+    var next = document.getElementById('nextBtn');
+    if(prev) prev.addEventListener('click', function(){ if(idx>0){ idx--; render(); } });
+    if(next) next.addEventListener('click', function(){ idx = (idx<FINAL)?idx+1:0; render(); });
+  }
+
+  function finalOPN(){
+    return "<div class='demo-opn-card'>"+
+      "<div class='demo-opn-head'><div><h3>One Page News</h3><div class='demo-opn-meta'>Suraj Kumar Lohani Foods Pvt. Ltd. (DEMO) · 20 Aug 2026 · 7:00 AM</div></div>"+
+      "<div class='demo-opn-conf'>Data Confidence<br><b>87%</b></div></div>"+
+      "<div class='demo-opn-grid'>"+
+        opnTile("Cash Position","₹34.2L","good","Across 3 bank accounts, reconciled")+
+        opnTile("Cash vs Profit","₹12.5L gap","warn","₹18.6L profit booked, only ₹6.1L moved to cash")+
+        opnTile("Variance Flag","−4.3%","bad","Unit 2 job-work yield, 3 weeks running")+
+        opnTile("Inventory","₹61.4L","warn","22% aged beyond 90 days")+
+        opnTile("Working Capital","58 days","warn","Cash conversion cycle, up from 41 days")+
+        opnTile("Today's Decisions","3 actions","good","Ready below")+
+      "</div>"+
+      "<div class='demo-opn-decisions'><h4>Today's Decisions</h4><ol>"+
+      "<li>Call the Unit 2 plant manager — verify job-work yield drop before next production run.</li>"+
+      "<li>Chase the top 2 overdue receivables driving the cash-vs-profit gap.</li>"+
+      "<li>Hold new raw material purchase until aged inventory (22%) starts moving.</li>"+
+      "</ol></div>"+
+      "<div class='demo-watermark'>Demo company · illustrative figures · no ledger, ERP screen or client data shown</div>"+
+      "</div>"+
+      "<div class='demo-controls' style='max-width:100%;margin-top:24px;padding-top:0;border-top:none;justify-content:flex-start;gap:14px;'>"+
+      "<button class='btn btn-ghost' id='backBtn' style='color:var(--red-950); border:1px solid #f1e4d0; padding:10px 18px; font-size:.85rem;'>← Back to Stage 9</button>"+
+      "<button class='btn btn-ghost' id='restartBtn' style='color:var(--red-950); border:1px solid #f1e4d0; padding:10px 18px; font-size:.85rem;'>Restart from Stage 1</button>"+
+      "<a href='diagnostic.html' class='btn btn-primary' style='padding:10px 20px; font-size:.85rem;'>Get Your Free Diagnostic →</a>"+
+      "</div>";
+  }
+
+  function opnTile(label, value, tone, note){
+    return "<div class='demo-opn-tile'><div class='demo-opn-tile-label'>"+label+"</div><div class='demo-opn-tile-value "+tone+"'>"+value+"</div><div class='demo-opn-tile-note'>"+note+"</div></div>";
+  }
+
+  function render(){
+    renderRail();
+    renderPanel();
+    if(idx===FINAL){
+      var back = document.getElementById('backBtn');
+      var restart = document.getElementById('restartBtn');
+      if(back) back.addEventListener('click', function(){ idx = FINAL-1; render(); });
+      if(restart) restart.addEventListener('click', function(){ idx = 0; render(); });
+    }
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
