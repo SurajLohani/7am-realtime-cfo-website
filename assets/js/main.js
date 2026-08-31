@@ -10,6 +10,29 @@ function submitLead(type, fields) {
   }).catch(function () {});
 }
 
+// Locks a lead-capture form after a successful submit (disables inputs, swaps
+// button/status text) and adds a "Send another message" link that restores
+// the form to its original state without needing a page reload.
+function lockLeadForm(formEl, statusEl, sentBtnText, sentStatusText, originalBtnText, originalStatusText) {
+  if (!formEl) return;
+  var btn = formEl.querySelector('button');
+  formEl.querySelectorAll('input,select,textarea,button').forEach(function (el) { el.disabled = true; });
+  if (btn) btn.textContent = sentBtnText;
+  if (statusEl && sentStatusText) statusEl.textContent = sentStatusText;
+  var resetLink = document.createElement('a');
+  resetLink.href = '#';
+  resetLink.textContent = '\u21BA Send another message';
+  resetLink.style.cssText = 'display:inline-block; margin-top:10px; text-decoration:underline; cursor:pointer; font-size:.85rem;';
+  resetLink.onclick = function (ev) {
+    ev.preventDefault();
+    formEl.querySelectorAll('input,select,textarea,button').forEach(function (el) { el.disabled = false; if (el.tagName !== 'BUTTON') el.value = ''; });
+    if (btn) btn.textContent = originalBtnText;
+    if (statusEl && originalStatusText) statusEl.textContent = originalStatusText;
+    resetLink.remove();
+  };
+  (statusEl || formEl).insertAdjacentElement('afterend', resetLink);
+}
+
 // Google Analytics (GA4) loader — only fires after cookie consent is accepted.
 // Property: "7AM & Realtime CFO" (GA4), stream: https://7amandrealtimecfo.com
 var GA_MEASUREMENT_ID = 'G-DD86X4H0B6';
@@ -416,10 +439,12 @@ document.addEventListener('DOMContentLoaded', function () {
         page: window.location.pathname
       };
       submitLead('QuickContact', fields);
-      qcForm.querySelectorAll('input,button').forEach(function (el) { el.disabled = true; });
-      qcForm.querySelector('button').textContent = 'Sent ✓';
       var note = qcForm.parentElement.querySelector('.quick-contact-note');
-      if (note) note.textContent = '✅ Got it — we reply within one business day. Prefer WhatsApp? DM "MORNING" to +91-7011283542.';
+      lockLeadForm(
+        qcForm, note,
+        'Sent ✓', '✅ Got it — we reply within one business day. Prefer WhatsApp? DM "MORNING" to +91-7011283542.',
+        'Send →', 'No spam. Prefer WhatsApp? DM "MORNING" to +91-7011283542.'
+      );
     });
   }
   // Header scroll state
