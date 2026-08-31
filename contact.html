@@ -272,9 +272,11 @@ function submitContactForm(ev){
     message: document.getElementById('ctMessage').value
   };
   submitLead('ContactForm', fields);
-  document.getElementById('contactForm').querySelectorAll('input,select,textarea,button').forEach(function(el){ el.disabled = true; });
-  document.getElementById('contactForm').querySelector('button').textContent = 'Sent ✓';
-  document.getElementById('ctStatus').textContent = '✅ Message sent — we reply within one business day. Prefer WhatsApp? DM "MORNING" to +91-7011283542 for the fastest reply.';
+  lockLeadForm(
+    document.getElementById('contactForm'), document.getElementById('ctStatus'),
+    'Sent ✓', '✅ Message sent — we reply within one business day. Prefer WhatsApp? DM "MORNING" to +91-7011283542 for the fastest reply.',
+    'Send Message →', 'Prefer WhatsApp? DM "MORNING" to +91-7011283542 for the fastest reply.'
+  );
   return false;
 }
 </script>

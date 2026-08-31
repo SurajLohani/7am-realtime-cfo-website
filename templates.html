@@ -295,8 +295,11 @@ function submitNotifyForm(ev){
     country: document.getElementById('tplCountry').value
   };
   submitLead('TemplateNotify', fields);
-  document.getElementById('notifyForm').querySelectorAll('input,select,button').forEach(function(el){ el.disabled = true; });
-  document.getElementById('notifyForm').querySelector('button').textContent = 'You\'re on the list ✓';
+  lockLeadForm(
+    document.getElementById('notifyForm'), null,
+    'You\'re on the list ✓', null,
+    'Notify Me →', null
+  );
   return false;
 }
 </script>

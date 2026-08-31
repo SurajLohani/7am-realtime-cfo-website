@@ -303,9 +303,11 @@ function submitGapForm(ev){
     notes: document.getElementById('gapNotes').value
   };
   submitLead('GapDiagnostic', fields);
-  document.getElementById('gapForm').querySelectorAll('input,select,textarea,button').forEach(function(el){ el.disabled = true; });
-  document.getElementById('gapForm').querySelector('button').textContent = 'Sent ✓';
-  document.getElementById('gapStatus').textContent = '✅ Got it — we\'ll review your numbers and send your personalized 5-Gap Financial Diagnostic Report within 3 business days. Prefer WhatsApp? DM "MORNING" to +91-7011283542.';
+  lockLeadForm(
+    document.getElementById('gapForm'), document.getElementById('gapStatus'),
+    'Sent ✓', '✅ Got it — we\'ll review your numbers and send your personalized 5-Gap Financial Diagnostic Report within 3 business days. Prefer WhatsApp? DM "MORNING" to +91-7011283542.',
+    'Request My Free 5-Gap Report →', 'We reply within 3 business days. Prefer WhatsApp? DM "MORNING" to +91-7011283542.'
+  );
   return false;
 }
 </script>
