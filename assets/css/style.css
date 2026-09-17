@@ -106,6 +106,46 @@ h3{font-size:1.25rem;}
   .mobile-only-link{display:block;}
 }
 
+/* ---------- Services Nav Dropdown ---------- */
+.nav-dropdown{position:relative;}
+.nav-dropdown > a::after{content:" \25BE"; font-size:.7em; opacity:.75;}
+.nav-dropdown-menu{
+  list-style:none; margin:0; padding:10px 0;
+  position:absolute; top:100%; left:0; margin-top:12px; min-width:300px;
+  background:#fff; border-radius:12px; box-shadow:0 24px 50px -16px rgba(20,6,6,.4);
+  opacity:0; visibility:hidden; transform:translateY(8px);
+  transition:opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index:60;
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu{
+  opacity:1; visibility:visible; transform:translateY(0);
+}
+.nav-dropdown-menu li{display:block;}
+.nav-dropdown-menu a{
+  display:block; padding:9px 22px; font-size:.86rem; font-weight:700;
+  color:var(--red-900,#3a1414); white-space:nowrap; transition:background .15s, color .15s;
+}
+.nav-dropdown-menu a::after{content:none;}
+.nav-dropdown-menu a:hover{background:var(--cream,#fbf3e7); color:var(--red-700);}
+.nav-dropdown-sep{height:1px; background:#f1e4d0; margin:8px 18px;}
+.nav-dropdown-menu .sec a{font-weight:500; font-size:.8rem; color:var(--ink-soft,#8a7a63);}
+.nav-dropdown-menu .sec a:hover{color:var(--red-700);}
+
+@media (max-width:960px){
+  .nav-dropdown-menu{
+    position:static; opacity:1; visibility:visible; transform:none; display:block;
+    box-shadow:none; background:transparent; border-radius:0; padding:4px 0 4px 16px; margin-top:6px;
+  }
+  .nav-dropdown-menu a{color:rgba(255,255,255,.78); padding:6px 0; font-size:.84rem;}
+  .nav-dropdown-menu a:hover{background:transparent; color:var(--gold);}
+  .nav-dropdown-menu .sec a{color:rgba(255,255,255,.5);}
+  .nav-dropdown-sep{background:rgba(240,166,58,.2); margin:8px 0;}
+  .nav-dropdown > a::after{content:none;}
+}
+
+.svc-anchor{scroll-margin-top:110px;}
+
 /* ---------- Hero ---------- */
 .hero{
   position:relative; min-height:100vh; display:flex; align-items:center;
