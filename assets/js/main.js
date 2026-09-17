@@ -1,4 +1,4 @@
-// 7AM & Realtime CFO™ — shared site behavior
+// Suraj Kumar Lohani — Fractional CFO — shared site behavior
 
 // Shared lead-capture endpoint (Google Apps Script Web App -> Google Sheet)
 var LEAD_SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwe6hNIr2JUrzan62xpZzp01CAyzzg6oyzyPOI2tjXMxg7Kn2HMYw6CNNP7o1bBpUld/exec';
@@ -34,7 +34,7 @@ function lockLeadForm(formEl, statusEl, sentBtnText, sentStatusText, originalBtn
 }
 
 // Google Analytics (GA4) loader — only fires after cookie consent is accepted.
-// Property: "7AM & Realtime CFO" (GA4), stream: https://7amandrealtimecfo.com
+// Property: "Suraj Kumar Lohani — Fractional CFO" (GA4), stream: https://7amandrealtimecfo.com
 var GA_MEASUREMENT_ID = 'G-DD86X4H0B6';
 function loadGoogleAnalytics() {
   if (!GA_MEASUREMENT_ID) return;
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Floating WhatsApp button — sitewide, injected on every page (no HTML edits needed per-page)
   (function () {
     var wa = document.createElement('a');
-    wa.href = 'https://wa.me/917011283542?text=' + encodeURIComponent('Hi, I want to know more about 7AM & Realtime CFO™.');
+    wa.href = 'https://wa.me/917011283542?text=' + encodeURIComponent('Hi, I want to know more about your Fractional CFO services.');
     wa.target = '_blank';
     wa.rel = 'noopener';
     wa.className = 'wa-float';
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
         '<button type="button" class="booking-modal-close" aria-label="Close">&times;</button>' +
         '<div class="booking-modal-head">' +
           '<span class="eyebrow" id="bookingModalEyebrow">Book a Demo</span>' +
-          '<h3 id="bookingModalTitle">See 7AM &amp; Realtime CFO&trade; on your own numbers</h3>' +
+          '<h3 id="bookingModalTitle">See how this works on your own numbers</h3>' +
           '<p>Tell us a bit about your business — we reply within one business day.</p>' +
         '</div>' +
         '<form id="bookingModalForm" class="lead-form">' +
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (eyebrow) eyebrow.textContent = requestType;
       if (title) title.textContent = requestType === 'Free Consultation'
         ? 'Talk it through before you commit to anything'
-        : "See 7AM & Realtime CFO™ on your own numbers";
+        : "See how this works on your own numbers";
       if (form) form.style.display = '';
       if (thanks) thanks.style.display = 'none';
       overlay.classList.add('open');
@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // ================= Ask7AM guided chat widget — sitewide, injected on every page =================
   (function () {
     var FRIENDLY_CATS = [
-      { label: '🧭 What is 7AM & Realtime CFO?', cats: ['Products & Services'] },
+      { label: '🧭 What do you offer?', cats: ['Products & Services'] },
       { label: '💰 Pricing & Engagement', cats: ['Pricing & Engagement'] },
       { label: '🏭 Industries We Serve', cats: ['Industries'] },
       { label: '🌍 Country Compliance (7 Countries)', cats: ['Country Compliance'] },
@@ -247,13 +247,13 @@ document.addEventListener('DOMContentLoaded', function () {
       { label: '🏆 Case Studies & Trust', cats: ['Case Studies & Results', 'Trust & Comparison'] },
       { label: '🧩 Common Business Scenarios', cats: ['Common Scenarios', 'Cross-Border Scenarios'] }
     ];
-    var GREETING = "Namaste! I'm Ask7AM 🕐 — pick a topic below, or type your question about 7AM & Realtime CFO™, our services, industries, country compliance, or finance concepts.";
+    var GREETING = "Namaste! I'm here to help — pick a topic below, or type your question about our Fractional CFO services, industries, country compliance, or finance concepts.";
     var STOPWORDS = { 'the':1,'a':1,'an':1,'is':1,'are':1,'of':1,'to':1,'for':1,'in':1,'and':1,'or':1,'do':1,'does':1,'how':1,'what':1,'why':1,'can':1,'i':1,'my':1,'your':1,'you':1,'it':1,'on':1,'with':1,'this':1,'that':1,'be':1 };
 
     var fab = document.createElement('button');
     fab.className = 'ask7am-float';
-    fab.setAttribute('aria-label', 'Ask7AM — chat with our FAQ assistant');
-    fab.innerHTML = '<img src="assets/img/ask7am-badge.png" alt="Ask7AM"><span>Ask7AM</span>';
+    fab.setAttribute('aria-label', 'Chat with our FAQ assistant');
+    fab.innerHTML = '<img src="assets/img/ask7am-badge.png" alt="Chat"><span>Ask a Question</span>';
     document.body.appendChild(fab);
 
     var panel = document.createElement('div');
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function () {
     panel.innerHTML =
       '<div class="ask7am-header">' +
         '<img src="assets/img/ask7am-badge.png" alt="">' +
-        '<div class="ask7am-header-text"><strong>Ask7AM</strong><span>Your FAQ Assistant</span></div>' +
+        '<div class="ask7am-header-text"><strong>Ask a Question</strong><span>Your FAQ Assistant</span></div>' +
         '<button class="ask7am-close" aria-label="Close">&times;</button>' +
       '</div>' +
       '<div class="ask7am-body"></div>' +
@@ -319,15 +319,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (label === '💬 Talk to Suraj on WhatsApp') {
           addUserMsg(label);
-          window.open('https://wa.me/917011283542?text=' + encodeURIComponent('Hi, I have a question about 7AM & Realtime CFO™.'), '_blank');
+          window.open('https://wa.me/917011283542?text=' + encodeURIComponent('Hi, I have a question about your Fractional CFO services.'), '_blank');
           addBotMsg('Great — I\'ve opened WhatsApp for you. Anything else?');
           showTopics();
           return;
         }
         var found = FRIENDLY_CATS.filter(function (c) { return c.label === label; })[0];
-        if (!found || typeof ASK7AM_FAQ === 'undefined') return;
+        if (!found || typeof ASK_FAQ_DATA === 'undefined') return;
         addUserMsg(label);
-        var matches = ASK7AM_FAQ.filter(function (row) { return found.cats.indexOf(row.c) !== -1; });
+        var matches = ASK_FAQ_DATA.filter(function (row) { return found.cats.indexOf(row.c) !== -1; });
         var top = matches.slice(0, 8).map(function (row) { return row.q; });
         addBotMsg('Here are common questions on <strong>' + esc(label.replace(/^[^\s]+\s/, '')) + '</strong>:');
         addChips(top.concat(['⬅ Back to topics']), function (q2) {
@@ -343,10 +343,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function searchFAQ(query) {
-      if (typeof ASK7AM_FAQ === 'undefined') return [];
+      if (typeof ASK_FAQ_DATA === 'undefined') return [];
       var words = query.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(function (w) { return w && !STOPWORDS[w]; });
       if (!words.length) return [];
-      var scored = ASK7AM_FAQ.map(function (row) {
+      var scored = ASK_FAQ_DATA.map(function (row) {
         var qLower = row.q.toLowerCase();
         var score = 0;
         words.forEach(function (w) { if (qLower.indexOf(w) !== -1) score += 2; });
@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', function () {
         addBotMsg("I couldn't find an exact match for that in our FAQ bank. You can browse all 1,286 questions or message Suraj directly on WhatsApp for a personal answer.");
         addChips(['📖 See all 1286 FAQs', '💬 Talk to Suraj on WhatsApp', '⬅ Back to topics'], function (label) {
           if (label === '📖 See all 1286 FAQs') { addUserMsg(label); window.open('faq.html', '_blank'); addBotMsg('Opened in a new tab. Anything else?'); return; }
-          if (label === '💬 Talk to Suraj on WhatsApp') { addUserMsg(label); window.open('https://wa.me/917011283542?text=' + encodeURIComponent('Hi, I have a question about 7AM & Realtime CFO™.'), '_blank'); addBotMsg('Opened WhatsApp for you. Anything else?'); return; }
+          if (label === '💬 Talk to Suraj on WhatsApp') { addUserMsg(label); window.open('https://wa.me/917011283542?text=' + encodeURIComponent('Hi, I have a question about your Fractional CFO services.'), '_blank'); addBotMsg('Opened WhatsApp for you. Anything else?'); return; }
           addUserMsg(label); addBotMsg('Sure — pick a topic:'); showTopics();
         });
         return;
