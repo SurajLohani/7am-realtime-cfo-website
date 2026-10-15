@@ -310,8 +310,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function showTopics() {
-      addChips(FRIENDLY_CATS.map(function (c) { return c.label; }).concat(['📖 See all 1867 FAQs', '💬 Talk to Suraj on WhatsApp']), function (label) {
-        if (label === '📖 See all 1867 FAQs') {
+      addChips(FRIENDLY_CATS.map(function (c) { return c.label; }).concat(['📖 See all 1877 FAQs', '💬 Talk to Suraj on WhatsApp']), function (label) {
+        if (label === '📖 See all 1877 FAQs') {
           addUserMsg(label);
           window.open('faq.html', '_blank');
           addBotMsg('Opened the full FAQ page in a new tab. Anything else I can help with?');
@@ -364,8 +364,8 @@ document.addEventListener('DOMContentLoaded', function () {
       var results = searchFAQ(text);
       if (!results.length) {
         addBotMsg("I couldn't find an exact match for that in our FAQ bank. You can browse all 1,867 questions or message Suraj directly on WhatsApp for a personal answer.");
-        addChips(['📖 See all 1867 FAQs', '💬 Talk to Suraj on WhatsApp', '⬅ Back to topics'], function (label) {
-          if (label === '📖 See all 1867 FAQs') { addUserMsg(label); window.open('faq.html', '_blank'); addBotMsg('Opened in a new tab. Anything else?'); return; }
+        addChips(['📖 See all 1877 FAQs', '💬 Talk to Suraj on WhatsApp', '⬅ Back to topics'], function (label) {
+          if (label === '📖 See all 1877 FAQs') { addUserMsg(label); window.open('faq.html', '_blank'); addBotMsg('Opened in a new tab. Anything else?'); return; }
           if (label === '💬 Talk to Suraj on WhatsApp') { addUserMsg(label); window.open('https://wa.me/917011283542?text=' + encodeURIComponent('Hi, I have a question about your Fractional CFO services.'), '_blank'); addBotMsg('Opened WhatsApp for you. Anything else?'); return; }
           addUserMsg(label); addBotMsg('Sure — pick a topic:'); showTopics();
         });
@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    // Lazy-load the 1867-question FAQ data bank only when the widget is first opened
+    // Lazy-load the 1877-question FAQ data bank only when the widget is first opened
     var faqDataLoaded = false;
     fab.addEventListener('click', function loadData() {
       if (faqDataLoaded) return;
