@@ -128,6 +128,8 @@ h3{font-size:1.25rem;}
 }
 .nav-dropdown-menu a::after{content:none;}
 .nav-dropdown-menu a:hover{background:var(--cream,#fbf3e7); color:var(--red-700);}
+.nav-dropdown-menu .grp{padding:10px 18px 4px; font-size:.68rem; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:var(--red-700,#b32020);}
+.nav-dropdown-menu .grp:first-child{padding-top:4px;}
 .nav-dropdown-sep{height:1px; background:#f1e4d0; margin:8px 18px;}
 .nav-dropdown-menu .sec a{font-weight:500; font-size:.8rem; color:var(--ink-soft,#8a7a63);}
 .nav-dropdown-menu .sec a:hover{color:var(--red-700);}
@@ -785,3 +787,15 @@ body.booking-modal-lock{overflow:hidden;}
   width:40px; flex-shrink:0; font-size:1rem; cursor:pointer;
 }
 .ask7am-send:hover{background:var(--gold-2);}
+
+@media (max-width:900px){.nav-dropdown-menu .grp{color:var(--gold); padding:10px 0 2px;}}
+
+/* service groups + blind spots page */
+.grp-head{display:flex; align-items:baseline; gap:14px; margin:6px 0 4px; flex-wrap:wrap;}
+.grp-head .grp-letter{font-family:'Poppins',sans-serif; font-weight:900; font-size:1.6rem; color:var(--gold-2,#e8890c);}
+.grp-sub{color:var(--ink-soft,#6b5b49); margin:0 0 16px; max-width:760px;}
+.svc-group{margin-top:46px;}
+.svc-group:first-of-type{margin-top:10px;}
+.bs-flow{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:24px 0 8px;}
+.bs-flow span{background:var(--red-800,#5c0d0d); color:#fff; padding:8px 16px; border-radius:999px; font-weight:700; font-size:.82rem;}
+.bs-flow span.arrow{background:none; color:var(--gold-2,#e8890c); padding:8px 0;}
