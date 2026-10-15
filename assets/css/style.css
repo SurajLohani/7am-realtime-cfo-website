@@ -799,3 +799,11 @@ body.booking-modal-lock{overflow:hidden;}
 .bs-flow{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:24px 0 8px;}
 .bs-flow span{background:var(--red-800,#5c0d0d); color:#fff; padding:8px 16px; border-radius:999px; font-weight:700; font-size:.82rem;}
 .bs-flow span.arrow{background:none; color:var(--gold-2,#e8890c); padding:8px 0;}
+
+/* hero identity hierarchy */
+.hero-id{display:flex; flex-direction:column; gap:6px; margin-bottom:18px;}
+.hero-id-1{font-size:clamp(1.05rem,2vw,1.35rem); font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:var(--gold);}
+.hero-id-2{font-size:clamp(1.4rem,3vw,2rem); font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#fff;}
+.hero-id-3{font-size:clamp(.95rem,1.6vw,1.15rem); font-weight:700; letter-spacing:.06em; color:rgba(255,255,255,.92);}
+.hero-id-4{font-size:.95rem; font-weight:600; color:var(--gold); letter-spacing:.04em;}
+.hero-id-5{font-size:.78rem; font-weight:500; color:rgba(255,255,255,.6); letter-spacing:.04em; margin-top:2px;}

@@ -31,39 +31,86 @@
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Suraj Kumar Lohani — Global Fractional CFO",
-  "alternateName": "Finance and Excel",
-  "url": "https://7amandrealtimecfo.com/",
-  "logo": "https://7amandrealtimecfo.com/assets/img/logo-nav.png",
-  "image": "https://7amandrealtimecfo.com/assets/img/og-share.jpg",
-  "description": "Global Fractional CFO solving finance blind spots: cash, profit, working capital, FP&A, forensic finance, MIS and finance automation, plus finance training. Author of Excel for Finance and Accounting.",
-  "founder": [
-    { "@type": "Person", "name": "Suraj Kumar Lohani", "jobTitle": "Global Fractional CFO, FP&A and Finance Blind Spot Specialist, Trainer and Author" },
-    { "@type": "Person", "name": "Shikha Kutariyar Lohani", "jobTitle": "Partner, Excel & Power BI Developer" }
-  ],
-  "address": {
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://7amandrealtimecfo.com/#org",
+   "name": "Suraj Kumar Lohani — Global Fractional CFO",
+   "alternateName": "Finance and Excel",
+   "url": "https://7amandrealtimecfo.com/",
+   "logo": "https://7amandrealtimecfo.com/assets/img/logo-nav.png",
+   "image": "https://7amandrealtimecfo.com/assets/img/og-share.jpg",
+   "founder": {
+    "@id": "https://7amandrealtimecfo.com/#suraj"
+   }
+  },
+  {
+   "@type": "Person",
+   "@id": "https://7amandrealtimecfo.com/#suraj",
+   "name": "Suraj Kumar Lohani",
+   "jobTitle": "Global Fractional CFO, FP&A and Finance Blind Spot Specialist, Trainer and Author",
+   "url": "https://7amandrealtimecfo.com/",
+   "image": "https://7amandrealtimecfo.com/assets/img/og-share.jpg",
+   "email": "surajkumarlohani@gmail.com",
+   "knowsAbout": [
+    "Fractional CFO",
+    "FP&A",
+    "Forensic finance",
+    "Finance blind spots",
+    "Cash flow and working capital",
+    "MIS and dashboards",
+    "Finance automation"
+   ],
+   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Ghaziabad",
     "addressRegion": "Uttar Pradesh",
     "addressCountry": "IN"
-  },
-  "areaServed": "Worldwide",
-  "sameAs": [
+   },
+   "sameAs": [
     "https://linkedin.com/in/surajkumarlohani",
-    "https://www.linkedin.com/in/shikhakutariyar",
     "https://www.youtube.com/@surajkumarlohani"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+91-7011283542",
-    "contactType": "customer service",
-    "email": "surajkumarlohani@gmail.com",
-    "areaServed": "Worldwide"
+   ]
+  },
+  {
+   "@type": "Person",
+   "name": "Shikha Kutariyar Lohani",
+   "jobTitle": "Partner, Excel & Power BI Developer",
+   "sameAs": [
+    "https://www.linkedin.com/in/shikhakutariyar"
+   ]
+  },
+  {
+   "@type": "ProfessionalService",
+   "@id": "https://7amandrealtimecfo.com/#service",
+   "name": "7AM & Realtime CFO",
+   "url": "https://7amandrealtimecfo.com/",
+   "image": "https://7amandrealtimecfo.com/assets/img/og-share.jpg",
+   "description": "Global Fractional CFO solving finance blind spots: cash, profit, working capital, FP&A, forensic finance, MIS and finance automation, plus finance training.",
+   "telephone": "+91-7011283542",
+   "email": "surajkumarlohani@gmail.com",
+   "founder": {
+    "@id": "https://7amandrealtimecfo.com/#suraj"
+   },
+   "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ghaziabad",
+    "addressRegion": "Uttar Pradesh",
+    "addressCountry": "IN"
+   },
+   "areaServed": "Worldwide",
+   "priceRange": "$$",
+   "knowsAbout": [
+    "Fractional CFO",
+    "FP&A",
+    "Forensic finance",
+    "MIS reporting",
+    "Finance automation"
+   ]
   }
+ ]
 }
-
 </script>
 </head>
 <body>
@@ -137,8 +184,13 @@
     <div class="hero-overlay"></div>
   </div>
   <div class="hero-content">
-    <span class="eyebrow">Global Fractional CFO &middot; Strategic Finance &middot; FP&amp;A &middot; Forensic Finance &middot; Finance Blind Spots</span>
-    <span class="eyebrow" style="opacity:.8; margin-top:8px;">Indian Tax, Payroll &amp; Cross-Border Finance Support &middot; Finance Systems &middot; Automation &middot; Training</span>
+    <div class="hero-id">
+      <span class="hero-id-1">Global Fractional CFO</span>
+      <span class="hero-id-2">Finance Blind Spots</span>
+      <span class="hero-id-3">Strategic Finance &bull; FP&amp;A &bull; Forensic Finance</span>
+      <span class="hero-id-4">Cash &bull; Profit &bull; Working Capital &bull; Risk</span>
+      <span class="hero-id-5">Finance Systems &middot; Automation &middot; Training &middot; Indian Tax, Payroll &amp; Cross-Border Support</span>
+    </div>
     <h1>I Make Financial Blind Spots <span class="gold-text">Visible, Before They Become Expensive.</span></h1>
     <p class="lede">Cash disappearing that the P&amp;L never explained. Margin quietly eroding through a contract nobody re-read. Working capital trapped in ageing stock no one is tracking. These are the blind spots that cost businesses money, control and time, long before anyone notices. 22+ years in Finance &amp; FP&amp;A go into finding them, fixing the system around them, and turning the numbers into a decision you can act on today. Global Fractional CFO for founders, owners, MDs and finance leaders, combining Strategic Finance, FP&amp;A and Forensic Finance to find blind spots in cash, profit, working capital and risk. Finance systems, automation and AI are the tools I use to make the solution scalable, not the identity I sell. I also teach the same finance, analytics and technology skills to students and professionals worldwide. <a href="finance-blind-spots.html" style="color:var(--gold); font-weight:700;">What are Finance Blind Spots? →</a></p>
     <div class="hero-cta">
