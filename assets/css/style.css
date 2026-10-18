@@ -811,8 +811,8 @@ body.booking-modal-lock{overflow:hidden;}
 /* ---------- Services mega menu ---------- */
 .nav-mega{position:static;}
 .nav-mega > .nav-dropdown-menu{
-  left:50%; right:auto; width:min(860px,94vw); min-width:0; padding:22px 26px;
-  transform:translate(-50%,8px); display:grid; grid-template-columns:repeat(3,1fr); gap:20px 28px;
+  left:50%; right:auto; width:min(1000px,94vw); min-width:0; padding:22px 26px;
+  transform:translate(-50%,8px); display:grid; grid-template-columns:repeat(4,1fr); gap:20px 26px;
 }
 .nav-mega:hover > .nav-dropdown-menu,.nav-mega:focus-within > .nav-dropdown-menu{transform:translate(-50%,0);}
 .dd-col{display:block;}
